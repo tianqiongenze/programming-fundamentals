@@ -1,0 +1,68 @@
+{
+  "rows": [
+    {
+      "name": "注塑机",
+      "temp": 61.2,
+      "press": 0.5,
+      "level": "normal"
+    },
+    {
+      "name": "空压机A",
+      "temp": 47.8,
+      "press": 0.38,
+      "level": "normal"
+    },
+    {
+      "name": "折弯机",
+      "temp": 96.0,
+      "press": 0.66,
+      "level": "danger"
+    },
+    {
+      "name": "注塑机",
+      "temp": 59.1,
+      "press": 0.41,
+      "level": "normal"
+    },
+    {
+      "name": "冷却泵",
+      "temp": 58.3,
+      "press": 0.44,
+      "level": "normal"
+    }
+  ],
+  "quarantine": [
+    {
+      "line": 2,
+      "raw": "err,0.46",
+      "reason": "解析失败"
+    }
+  ],
+  "keywords": [
+    [
+      "注塑",
+      2
+    ],
+    [
+      "塑机",
+      2
+    ],
+    [
+      "机液",
+      2
+    ],
+    [
+      "液压",
+      2
+    ],
+    [
+      "压油",
+      1
+    ]
+  ],
+  "levels": {
+    "normal": 4,
+    "warn": 0,
+    "danger": 1
+  }
+}

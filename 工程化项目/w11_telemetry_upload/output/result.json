@@ -1,0 +1,27 @@
+{
+  "total": 3,
+  "sent": 3,
+  "pending": 0,
+  "batches": 1,
+  "sent_batches": [
+    1
+  ],
+  "transport": "MQTT(paho-mqtt 2.x)",
+  "rows": [
+    {
+      "code": "DEV-1",
+      "temp": 55.5,
+      "press": 0.436
+    },
+    {
+      "code": "DEV-2",
+      "temp": 61.6,
+      "press": 0.453
+    },
+    {
+      "code": "DEV-3",
+      "temp": 58.44,
+      "press": 0.435
+    }
+  ]
+}

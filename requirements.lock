@@ -1,0 +1,15 @@
+# 《Python编程基础》（py02 环境） —— 精确版本锁定（requirements.lock）
+# 生成日期: 2026-10-13（73号轮）｜生成方式: 在本机已校准环境中读取已安装包的实际版本
+# 用法: pip install -r requirements.lock        （离线: pip install --no-index --find-links=./offline_wheels -r requirements.lock）
+# 说明:
+#   1. requirements.txt 用区间(>=)便于跟随升级；本文件用精确(==)保证**课堂结果可复现**。
+#   2. 标 `# 待核验` 的包在本机未安装（多为离线/可选依赖），联网或安装后请用下方命令回填。
+#   3. 回填命令: python -c "import importlib.metadata as m; print(m.version('包名'))"
+
+jieba==0.42.1
+# wordcloud==<待核验>   # W9(离线wheel+中文字体)
+Pillow==12.2.0
+reportlab==5.0.1
+paho-mqtt==2.1.0
+pymodbus==3.16.1
+pytest==9.0.3

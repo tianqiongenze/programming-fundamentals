@@ -1,0 +1,23 @@
+{
+  "n_devices": 3,
+  "n_cycles": 12,
+  "order": [
+    "DEV-01",
+    "DEV-02",
+    "DEV-03"
+  ],
+  "stat": {
+    "DEV-01": {
+      "warn": 6,
+      "danger": 2
+    },
+    "DEV-02": {
+      "warn": 6,
+      "danger": 2
+    },
+    "DEV-03": {
+      "warn": 7,
+      "danger": 1
+    }
+  }
+}

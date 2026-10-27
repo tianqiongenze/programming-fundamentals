@@ -1,0 +1,26 @@
+{
+  "n_devices": 3,
+  "levels": {
+    "normal": 3
+  },
+  "devices": [
+    {
+      "code": "DEV-2026-001",
+      "temp_c": 56.5,
+      "temp_f": 133.7,
+      "level": "normal"
+    },
+    {
+      "code": "DEV-2026-002",
+      "temp_c": 61.2,
+      "temp_f": 142.16,
+      "level": "normal"
+    },
+    {
+      "code": "DEV-2026-003",
+      "temp_c": 47.8,
+      "temp_f": 118.04,
+      "level": "normal"
+    }
+  ]
+}

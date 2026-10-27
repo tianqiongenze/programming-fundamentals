@@ -1,0 +1,43 @@
+{
+  "total": 5,
+  "parsed": 4,
+  "bad": 1,
+  "by_format": {
+    "json": 2,
+    "csv": 1,
+    "kv": 1
+  },
+  "rows": [
+    {
+      "id": "D1",
+      "temp": 78.5,
+      "press": 0.42,
+      "format": "json"
+    },
+    {
+      "id": "D2",
+      "temp": 81.0,
+      "press": 0.5,
+      "format": "csv"
+    },
+    {
+      "id": "D3",
+      "temp": 95.5,
+      "press": 0.66,
+      "format": "kv"
+    },
+    {
+      "id": "D4",
+      "temp": 60.0,
+      "press": 0.3,
+      "format": "json"
+    }
+  ],
+  "quarantine": [
+    {
+      "line": 4,
+      "raw": "损坏报文@@@",
+      "reason": "未知格式/解析失败"
+    }
+  ]
+}

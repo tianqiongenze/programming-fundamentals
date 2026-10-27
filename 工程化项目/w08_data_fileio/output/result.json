@@ -1,0 +1,44 @@
+{
+  "rows": [
+    {
+      "code": "DEV-01",
+      "temp": 56.5,
+      "press": 0.45
+    },
+    {
+      "code": "DEV-02",
+      "temp": 61.2,
+      "press": 0.5
+    },
+    {
+      "code": "DEV-03",
+      "temp": 47.8,
+      "press": 0.38
+    },
+    {
+      "code": "DEV-04",
+      "temp": 96.0,
+      "press": 0.66
+    }
+  ],
+  "summary": {
+    "count": 4,
+    "temp": {
+      "min": 47.8,
+      "max": 96.0,
+      "mean": 65.375
+    },
+    "press": {
+      "min": 0.38,
+      "max": 0.66,
+      "mean": 0.497
+    },
+    "over_limit": [
+      "DEV-04"
+    ]
+  },
+  "roundtrip": {
+    "csv": true,
+    "json": true
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "total": 6,
+  "ok": 3,
+  "bad": 3,
+  "success_rate": 0.5,
+  "quarantine": [
+    {
+      "line": 2,
+      "raw": "err,0.46",
+      "reason": "非数值: 'err,0.46'"
+    },
+    {
+      "line": 3,
+      "raw": "57.5,",
+      "reason": "非数值: '57.5,'"
+    },
+    {
+      "line": 6,
+      "raw": "abc,xyz",
+      "reason": "非数值: 'abc,xyz'"
+    }
+  ],
+  "rows": [
+    {
+      "line": 1,
+      "temp": 56.2,
+      "press": 0.45
+    },
+    {
+      "line": 4,
+      "temp": 61.0,
+      "press": 0.47
+    },
+    {
+      "line": 5,
+      "temp": 58.3,
+      "press": 0.44
+    }
+  ]
+}

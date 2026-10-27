@@ -1,0 +1,26 @@
+# 设备台账参数（改配置不改代码）
+warn: 80.0
+danger: 95.0
+unit: "c"
+seed: 7
+topk: 3
+
+devices:
+  - code: "DEV-2026-001"
+    name: 智能注塑机
+    temp: 56.5
+    press_kpa: 450.0
+    rpm: 1480
+    status: running
+  - code: "DEV-2026-002"
+    name: 液压折弯机
+    temp: 61.2
+    press_kpa: 620.0
+    rpm: 980
+    status: running
+  - code: "DEV-2026-003"
+    name: 空压机A
+    temp: 47.8
+    press_kpa: 780.0
+    rpm: 1450
+    status: stopped

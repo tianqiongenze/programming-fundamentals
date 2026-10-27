@@ -1,0 +1,6 @@
+name,temp,press,level
+注塑机,61.2,0.5,normal
+空压机A,47.8,0.38,normal
+折弯机,96.0,0.66,danger
+注塑机,59.1,0.41,normal
+冷却泵,58.3,0.44,normal

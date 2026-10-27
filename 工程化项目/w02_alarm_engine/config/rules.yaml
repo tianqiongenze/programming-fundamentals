@@ -1,0 +1,28 @@
+warn: 80.0
+danger: 95.0
+press_warn: 0.55
+press_danger: 0.65
+dedup_seconds: 10
+unit: "c"
+seed: 7
+topk: 3
+
+readings:
+  - ts: 79.8
+    temp: 78.0
+    press: 0.50
+  - ts: 80.1
+    temp: 80.0
+    press: 0.50
+  - ts: 85.0
+    temp: 94.9
+    press: 0.50
+  - ts: 90.0
+    temp: 95.0
+    press: 0.66
+  - ts: 91.0
+    temp: 95.0
+    press: 0.66
+  - ts: 100.0
+    temp: 96.0
+    press: 0.60

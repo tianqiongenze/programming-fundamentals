@@ -1,0 +1,16 @@
+# 《Python编程基础》依赖清单（全部轻量, 支持离线安装）——50号轮版本校准（2026-09联网核实）
+# 安装：conda activate py02 && pip install -r requirements.txt
+# 离线: pip install --no-index --find-links=./offline_wheels -r requirements.txt
+
+jieba>=0.42
+wordcloud>=1.9
+Pillow>=10.0
+reportlab>=4.0
+paho-mqtt>=2.0
+pymodbus>=3.0
+
+# 备注:
+# 1. wordcloud/Pillow/reportlab 在W9/W10使用, wheel随包提供(含中文字体);
+# 2. pymodbus 3.x API与2.x不同, 本包starter按3.x编写(读保持寄存器: client.read_holding_registers);
+# 3. paho-mqtt 2.x为现行版(2.0 API迁移至CallbackAPIVersion, 本包starter按2.x编写);
+# 4. 若机房限制pip, 教师用 pip download -r requirements.txt -d offline_wheels/ 导出后内网分发。

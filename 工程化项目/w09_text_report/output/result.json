@@ -1,0 +1,46 @@
+{
+  "n_faults": 6,
+  "total_tokens": 52,
+  "top": [
+    {
+      "word": "液压",
+      "count": 3
+    },
+    {
+      "word": "注塑",
+      "count": 2
+    },
+    {
+      "word": "塑机",
+      "count": 2
+    },
+    {
+      "word": "机液",
+      "count": 2
+    },
+    {
+      "word": "压泵",
+      "count": 2
+    },
+    {
+      "word": "冷却",
+      "count": 2
+    },
+    {
+      "word": "风机",
+      "count": 2
+    },
+    {
+      "word": "机轴",
+      "count": 2
+    },
+    {
+      "word": "轴承",
+      "count": 2
+    },
+    {
+      "word": "压油",
+      "count": 1
+    }
+  ]
+}

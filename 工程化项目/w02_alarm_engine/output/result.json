@@ -1,0 +1,54 @@
+{
+  "n_readings": 6,
+  "fired": 4,
+  "suppressed": 2,
+  "by_level": {
+    "normal": 1,
+    "warn": 1,
+    "emergency": 2
+  },
+  "events": [
+    {
+      "ts": 79.8,
+      "temp": 78.0,
+      "press": 0.5,
+      "level": "normal",
+      "suppressed": false
+    },
+    {
+      "ts": 80.1,
+      "temp": 80.0,
+      "press": 0.5,
+      "level": "warn",
+      "suppressed": false
+    },
+    {
+      "ts": 85.0,
+      "temp": 94.9,
+      "press": 0.5,
+      "level": "warn",
+      "suppressed": true
+    },
+    {
+      "ts": 90.0,
+      "temp": 95.0,
+      "press": 0.66,
+      "level": "emergency",
+      "suppressed": false
+    },
+    {
+      "ts": 91.0,
+      "temp": 95.0,
+      "press": 0.66,
+      "level": "emergency",
+      "suppressed": true
+    },
+    {
+      "ts": 100.0,
+      "temp": 96.0,
+      "press": 0.6,
+      "level": "emergency",
+      "suppressed": false
+    }
+  ]
+}
