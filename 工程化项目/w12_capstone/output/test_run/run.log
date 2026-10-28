@@ -1,7 +1,0 @@
-读 CSV /Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/raw_metrics.csv：有效 53 条 / 坏行 7 条
-采集完成：通道=csv 53 条（丢弃 7 条坏行）
-文本报告已落盘：/Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w12_capstone/output/test_run/report.txt
-词云已生成：/Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w12_capstone/output/test_run/keyword_cloud.png（字体=/Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/fonts/ZH_Font.ttf）
-PDF 已生成：/Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w12_capstone/output/test_run/deliverable.pdf（字体=ZH，附图=有）
-读 CSV /Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/raw_metrics.csv：有效 53 条 / 坏行 7 条
-采集完成：通道=csv 53 条（丢弃 7 条坏行）
