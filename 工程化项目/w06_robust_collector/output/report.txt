@@ -1,5 +1,5 @@
 ================================================================
-生成时间: 2026-10-28 09:41:54
+生成时间: 2026-10-28 10:46:41
 ================================================================
 
 [输入口径]
@@ -27,9 +27,9 @@
 
 [日志与异常（logging 实测）]
 ----------------------------------------------------------------
-日志文件: /Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w06_robust_collector/output/run.log（共 54 行）
-级别分布: INFO 29 / WARNING 20 / ERROR 5
-可定位到行（日志含'第N行'）: 35 处
+日志文件: /Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w06_robust_collector/output/run.log（共 65 行）
+级别分布: INFO 35 / WARNING 24 / ERROR 6
+可定位到行（日志含'第N行'）: 42 处
 本次实际捕获异常类型: FileNotFoundError, IndexError, ValueError
 finally 收尾已执行: 是
 脏数据备查: /Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w06_robust_collector/output/bad_records.csv（4 行）
@@ -44,7 +44,7 @@ finally 收尾已执行: 是
 
 [验收档位判定（实测）]
 ----------------------------------------------------------------
-实测达成档位: 优(A) ｜ 实测捕获异常 3 种 ｜ 日志 54 行（INFO 29/WARNING 20/ERROR 5）｜ 定位到行 35 处 ｜ bad_records.csv 4 行
+实测达成档位: 优(A) ｜ 实测捕获异常 3 种 ｜ 日志 65 行（INFO 35/WARNING 24/ERROR 6）｜ 定位到行 42 处 ｜ bad_records.csv 4 行
   及格(D)    规范率门槛≥75% [达标] ｜ 功能OK ｜ 处理≥2 种异常 + 基本日志（run.log 非空）
   良好(C)    规范率门槛≥80% [达标] ｜ 功能OK ｜ INFO/WARNING/ERROR 三级日志分明；统计输出正确
   优秀(B)    规范率门槛≥90% [达标] ｜ 功能OK ｜ ≥3 种异常 + 完整 finally；日志可定位到行

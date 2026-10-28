@@ -52,13 +52,13 @@
   "starter": "/Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w06_robust_collector/output/raw_data.txt",
   "log": {
     "path": "/Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w06_robust_collector/output/run.log",
-    "lines": 54,
+    "lines": 65,
     "levels": {
-      "INFO": 29,
-      "ERROR": 5,
-      "WARNING": 20
+      "INFO": 35,
+      "ERROR": 6,
+      "WARNING": 24
     },
-    "row_refs": 35
+    "row_refs": 42
   },
   "bad_records_csv": "/Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w06_robust_collector/output/bad_records.csv",
   "bad_csv_rows": 4,
@@ -105,12 +105,12 @@
       "n_exc_types": 3,
       "ran_finally": true,
       "levels": {
-        "INFO": 29,
-        "WARNING": 20,
-        "ERROR": 5
+        "INFO": 35,
+        "WARNING": 24,
+        "ERROR": 6
       },
-      "row_refs": 35,
-      "log_lines": 54,
+      "row_refs": 42,
+      "log_lines": 65,
       "n_bad": 4,
       "bad_csv_rows": 4
     }

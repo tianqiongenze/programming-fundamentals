@@ -1,0 +1,22 @@
+[
+  {
+    "code": "DEV-01",
+    "temp": 56.5,
+    "press": 0.45
+  },
+  {
+    "code": "DEV-02",
+    "temp": 61.2,
+    "press": 0.5
+  },
+  {
+    "code": "DEV-03",
+    "temp": 47.8,
+    "press": 0.38
+  },
+  {
+    "code": "DEV-04",
+    "temp": 96.0,
+    "press": 0.66
+  }
+]

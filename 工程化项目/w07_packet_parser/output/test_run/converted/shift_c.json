@@ -1,0 +1,14 @@
+[
+  {
+    "id": "D3",
+    "temp": 95.5,
+    "press": 0.66,
+    "format": "kv"
+  },
+  {
+    "id": "D5",
+    "temp": 96.0,
+    "press": 0.55,
+    "format": "kv"
+  }
+]

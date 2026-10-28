@@ -1,0 +1,68 @@
+================================================================
+生成时间: 2026-10-28 10:46:41
+================================================================
+
+[输入口径]
+----------------------------------------------------------------
+原始行 7 条｜温度 0~200℃｜压力 0~5.0MPa
+数据来源: /Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w06_robust_collector/output/raw_data.txt（现场文件 data/live_measurements.csv）
+
+[采集统计（实测）]
+----------------------------------------------------------------
+成功 3 条｜跳过(隔离) 4 条｜合计 7 条｜统计自洽: 是
+
+[隔离区]
+----------------------------------------------------------------
+第 2行 'err,0.46'     原因: 非数值: could not convert string to float: 'err'
+第 3行 '57.5,'        原因: 非数值: could not convert string to float: ''
+第 4行 '61.0'         原因: 缺字段: list index out of range
+第 7行 'abc,xyz'      原因: 非数值: could not convert string to float: 'abc'
+
+[失败原因分布]
+----------------------------------------------------------------
+缺字段: list index out of range: 1 条
+非数值: could not convert string to float: '': 1 条
+非数值: could not convert string to float: 'abc': 1 条
+非数值: could not convert string to float: 'err': 1 条
+
+[日志与异常（logging 实测）]
+----------------------------------------------------------------
+日志文件: /Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w06_robust_collector/output/run.log（共 65 行）
+级别分布: INFO 35 / WARNING 24 / ERROR 6
+可定位到行（日志含'第N行'）: 42 处
+本次实际捕获异常类型: FileNotFoundError, IndexError, ValueError
+finally 收尾已执行: 是
+脏数据备查: /Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w06_robust_collector/output/bad_records.csv（4 行）
+
+[编码规范率（PEP 8 实测）]
+----------------------------------------------------------------
+体检引擎: pycodestyle 2.14.0（业界标准）
+统计范围: run.py, src, tests（14 个文件 / 1025 有效行）
+公式: 规范率 = (1 - 违规条数 / 有效行数) × 100%
+违规条数: 0（涉及 0 行）（零违规）
+规范率实测: 100.0%｜工单门槛: ≥90% → 达标
+
+[验收档位判定（实测）]
+----------------------------------------------------------------
+实测达成档位: 优(A) ｜ 实测捕获异常 3 种 ｜ 日志 65 行（INFO 35/WARNING 24/ERROR 6）｜ 定位到行 42 处 ｜ bad_records.csv 4 行
+  及格(D)    规范率门槛≥75% [达标] ｜ 功能OK ｜ 处理≥2 种异常 + 基本日志（run.log 非空）
+  良好(C)    规范率门槛≥80% [达标] ｜ 功能OK ｜ INFO/WARNING/ERROR 三级日志分明；统计输出正确
+  优秀(B)    规范率门槛≥90% [达标] ｜ 功能OK ｜ ≥3 种异常 + 完整 finally；日志可定位到行
+  优(A)     规范率门槛≥90% [达标] ｜ 功能OK ｜ 达 B 且脏数据自动写入 bad_records.csv 备查
+
+[结论与建议]
+----------------------------------------------------------------
+坏数据不进结果集，已自动写入 bad_records.csv 备查；人工复核隔离区后决定重采或补录
+
+
+2026-10-28 10:46:41,887 INFO pipeline.py:96 采集开始：配置 7 行
+2026-10-28 10:46:41,888 ERROR pipeline.py:59 现场数据文件缺失，改用 starter 数据: [Errno 2] No such file or directory: 'data/live_measurements.csv'
+2026-10-28 10:46:41,888 INFO pipeline.py:74 starter 文件已回读并在 finally 中关闭: /Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w06_robust_collector/output/raw_data.txt
+2026-10-28 10:46:41,888 INFO pipeline.py:118 第1行 采集成功: 温度 56.2℃ 压力 0.45MPa
+2026-10-28 10:46:41,888 WARNING pipeline.py:105 第2行 脏数据跳过: 'err,0.46' —— could not convert string to float: 'err'
+2026-10-28 10:46:41,888 WARNING pipeline.py:105 第3行 脏数据跳过: '57.5,' —— could not convert string to float: ''
+2026-10-28 10:46:41,888 WARNING pipeline.py:110 第4行 缺字段跳过: '61.0' —— list index out of range
+2026-10-28 10:46:41,888 INFO pipeline.py:118 第5行 采集成功: 温度 61.0℃ 压力 0.47MPa
+2026-10-28 10:46:41,888 INFO pipeline.py:118 第6行 采集成功: 温度 58.3℃ 压力 0.44MPa
+2026-10-28 10:46:41,888 WARNING pipeline.py:105 第7行 脏数据跳过: 'abc,xyz' —— could not convert string to float: 'abc'
+2026-10-28 10:46:41,889 INFO pipeline.py:125 采集统计（成功/跳过/合计）: 3/4/7

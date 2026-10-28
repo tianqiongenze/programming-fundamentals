@@ -25,7 +25,7 @@
   ],
   "payload_sample": {
     "id": "MODBUS-01",
-    "ts": 1793151722,
+    "ts": 1793155607,
     "metrics": {
       "temp": 56.2,
       "press": 0.4
@@ -39,11 +39,11 @@
     "real": true,
     "attempts": 5,
     "detail": "实跑成功（6 寄存器）",
-    "channel": "pymodbus 本地从站（真实协议栈）:51116"
+    "channel": "pymodbus 本地从站（真实协议栈）:51901"
   },
   "mqtt": {
     "real": true,
-    "detail": "MQTT 实跑（127.0.0.1:1883，已拉起自研 mini broker（子进程 25942, 端口 1883））"
+    "detail": "MQTT 实跑（127.0.0.1:1883，已拉起自研 mini broker（子进程 55520, 端口 1883））"
   },
   "reconnect": {
     "attempts": 2
@@ -52,9 +52,9 @@
     "ok": true,
     "receipts": 1,
     "detail": "收到 1 条（载荷逐字节一致 1 条）",
-    "first": "{\"id\": \"PROBE\", \"ts\": 1793151722, \"metrics\": {\"temp\": 0.0, \"press\": 0.0}}"
+    "first": "{\"id\": \"PROBE\", \"ts\": 1793155607, \"metrics\": {\"temp\": 0.0, \"press\": 0.0}}"
   },
-  "transport": "MQTT 实跑（127.0.0.1:1883，已拉起自研 mini broker（子进程 25942, 端口 1883））",
+  "transport": "MQTT 实跑（127.0.0.1:1883，已拉起自研 mini broker（子进程 55520, 端口 1883））",
   "log": {
     "path": "/Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w11_telemetry_upload/output/run.log",
     "lines": 12,

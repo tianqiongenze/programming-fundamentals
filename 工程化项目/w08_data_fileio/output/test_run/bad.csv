@@ -1,0 +1,4 @@
+line,raw,dimension,reason
+5,"{'code': 'DEV-05', 'temp': None, 'press': 0.42}",缺失,字段 temp 为空
+6,"{'code': 'DEV-06', 'temp': 'err', 'press': 0.41}",类型,数值字段含非数值: temp='err' press=0.41
+7,"{'code': 'DEV-07', 'temp': 135.0, 'press': 0.39}",范围,温度越界 135.0℃（0~120℃）
