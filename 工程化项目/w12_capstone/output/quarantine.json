@@ -1,7 +1,26 @@
 [
   {
-    "line": 2,
+    "line": 55,
     "raw": "err,0.46",
-    "reason": "解析失败"
+    "dimension": "有效性",
+    "reason": "字段数/类型不合法"
+  },
+  {
+    "line": 60,
+    "raw": ",,",
+    "dimension": "完整性",
+    "reason": "字段缺失或空值"
+  },
+  {
+    "line": 61,
+    "raw": "锅炉,305.0,0.40",
+    "dimension": "范围",
+    "reason": "温度越界"
+  },
+  {
+    "line": 62,
+    "raw": "润滑泵,-3.0,0.20",
+    "dimension": "范围",
+    "reason": "负值"
   }
 ]

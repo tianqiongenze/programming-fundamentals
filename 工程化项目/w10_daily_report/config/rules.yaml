@@ -15,3 +15,34 @@ kpi:
     produced: 806
     good: 791
     oee: 83.4
+
+# 图像标注参数（工单任务：400×300 缺陷标注图）
+annotate:
+  width: 400
+  height: 300
+
+# 排版实测期望（pipeline/imaging 从这里读，改配置不改代码）
+layout:
+  margin_mm: 20
+  font_levels: 3
+
+# 工单验收标准的规范率门槛（数字外置；tiers.py 从这里读）
+# 及格(D)≥80%、优秀(B)≥90% 为工单明文；C/A 档工单未标 %，取不降门槛的常规值
+tiers:
+  D: 80.0
+  C: 85.0
+  B: 90.0
+  A: 90.0
+
+# 缺陷标注坐标（工单 W10"坐标 starter 给定"；画布 400×300）
+defects:
+  - name: 气泡
+    x: 40
+    y: 30
+    w: 90
+    h: 60
+  - name: 划痕
+    x: 210
+    y: 150
+    w: 120
+    h: 70

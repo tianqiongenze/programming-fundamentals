@@ -1,43 +1,23 @@
 {
-  "rows": [
-    {
-      "name": "注塑机",
-      "temp": 61.2,
-      "press": 0.5,
-      "level": "normal"
-    },
-    {
-      "name": "空压机A",
-      "temp": 47.8,
-      "press": 0.38,
-      "level": "normal"
-    },
-    {
-      "name": "折弯机",
-      "temp": 96.0,
-      "press": 0.66,
-      "level": "danger"
-    },
-    {
-      "name": "注塑机",
-      "temp": 59.1,
-      "press": 0.41,
-      "level": "normal"
-    },
-    {
-      "name": "冷却泵",
-      "temp": 58.3,
-      "press": 0.44,
-      "level": "normal"
-    }
-  ],
-  "quarantine": [
-    {
-      "line": 2,
-      "raw": "err,0.46",
-      "reason": "解析失败"
-    }
-  ],
+  "collect": {
+    "channel": "csv",
+    "rows": 53,
+    "dropped": 7,
+    "detail": "raw_metrics.csv"
+  },
+  "records": 62,
+  "valid": 58,
+  "quarantine": 4,
+  "dimensions": {
+    "完整性": 1,
+    "有效性": 1,
+    "范围": 2
+  },
+  "levels": {
+    "normal": 39,
+    "warn": 16,
+    "danger": 3
+  },
   "keywords": [
     [
       "注塑",
@@ -60,9 +40,60 @@
       1
     ]
   ],
-  "levels": {
-    "normal": 4,
-    "warn": 0,
-    "danger": 1
+  "style_rate": 100.0,
+  "style_violations": 0,
+  "style_engine": "pycodestyle 2.14.0（业界标准）",
+  "tiers": {
+    "tiers": [
+      {
+        "tier": "及格(D)",
+        "gate": 80.0,
+        "need": "功能基本完整 + 主流程可演示（≥50 条数据）",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "良好(C)",
+        "gate": 85.0,
+        "need": "功能完整 + 讲清设计思路（Collector/Reporter 两类）",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "优秀(B)",
+        "gate": 90.0,
+        "need": "技术细节深入 + 合理创新点（复用 W02/06/08/10）",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "优(A)",
+        "gate": 95.0,
+        "need": "架构图清晰 + 明显工业应用价值",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      }
+    ],
+    "min_rows": 50,
+    "n_raw": 53,
+    "claimed": "优(A)"
+  },
+  "checklist": [
+    "[✓] 文本报告 report.txt ｜ report.txt ｜ reportlab 之外的兜底产物，始终生成（2080 字节）",
+    "[✓] 词云 keyword_cloud.png ｜ keyword_cloud.png ｜ wordcloud + Pillow 真实渲染（34812 字节）",
+    "[✓] PDF 图文交付 deliverable.pdf ｜ deliverable.pdf ｜ reportlab + ZH 真实排版（138642 字节）",
+    "[✓] 清洗数据 clean_data.csv ｜ clean_data.csv ｜ 复用 W08 口径（1455 字节）",
+    "[✓] 运行日志 run.log ｜ run.log ｜ 复用 W06 logging（3184 字节）"
+  ],
+  "artifacts": {
+    "report.txt": true,
+    "keyword_cloud.png": true,
+    "deliverable.pdf": true,
+    "clean_data.csv": true,
+    "run.log": true
   }
 }

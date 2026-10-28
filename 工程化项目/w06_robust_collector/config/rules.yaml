@@ -4,10 +4,17 @@ unit: "c"
 seed: 7
 topk: 3
 
+# 现场设备数据文件：离线教学环境里刻意不存在——触发真实
+# FileNotFoundError，logging 记 ERROR 后回退到下方 starter 行（工单"出错不停机"）。
+data_file: "data/live_measurements.csv"
+
+# starter 采集行（含 4 条脏数据：非数值 / 空值 / 缺字段 / 非数值——
+# 异常路径与 WARNING 日志的实测样本，勿删）
 raw_lines:
   - "56.2,0.45"
   - "err,0.46"
   - "57.5,"
+  - "61.0"
   - "61.0,0.47"
   - "58.3,0.44"
   - "abc,xyz"

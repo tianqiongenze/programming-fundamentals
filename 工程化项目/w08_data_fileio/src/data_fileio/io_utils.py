@@ -41,9 +41,13 @@ def read_json(path):
         return json.load(f)
 
 
-def read_csv_rows(path):
-    """按行读 CSV，返回 list[dict]；首行视为表头。"""
-    with open(path, encoding="utf-8-sig", newline="") as f:
+def read_csv_rows(path, encoding="utf-8-sig"):
+    """按行读 CSV，返回 list[dict]；首行视为表头。
+
+    encoding 可显式传入（工单 W08 要求⑤：GBK 样例文件演示"编码坑"，
+    命令行 --encoding gbk 即走这里）。
+    """
+    with open(path, encoding=encoding, newline="") as f:
         return [dict(r) for r in csv.DictReader(f)]
 
 

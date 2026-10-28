@@ -3,24 +3,159 @@
   "levels": {
     "normal": 3
   },
+  "n_vars": 10,
+  "n_types": 4,
+  "types": [
+    "bool",
+    "float",
+    "int",
+    "str"
+  ],
+  "conversions": [
+    "c_to_f",
+    "kpa_to_mpa",
+    "mpa_to_psi"
+  ],
+  "measured": {
+    "ast_vars": 10,
+    "ast_types": 4,
+    "types": [
+      "bool",
+      "float",
+      "int",
+      "str"
+    ],
+    "conv_funcs": 3,
+    "conv_names": [
+      "c_to_f",
+      "kpa_to_mpa",
+      "mpa_to_psi"
+    ],
+    "conv_checked": 3,
+    "conv_failed": 0,
+    "colon_lines": 7,
+    "colon_same": 1,
+    "align_ok": true,
+    "input_probe_ok": true,
+    "input_hint_ok": true,
+    "input_detail": "越界/非数字当场拒收=True ｜ 范围提示进提问行=True ｜ 合法录入出卡=True",
+    "style_rate": 100.0
+  },
   "devices": [
     {
       "code": "DEV-2026-001",
       "temp_c": 56.5,
       "temp_f": 133.7,
+      "press_mpa": 0.45,
       "level": "normal"
     },
     {
       "code": "DEV-2026-002",
       "temp_c": 61.2,
       "temp_f": 142.16,
+      "press_mpa": 0.62,
       "level": "normal"
     },
     {
       "code": "DEV-2026-003",
       "temp_c": 47.8,
       "temp_f": 118.04,
+      "press_mpa": 0.78,
       "level": "normal"
     }
-  ]
+  ],
+  "style_engine": "pycodestyle 2.14.0（业界标准）",
+  "style_engine_kind": "pycodestyle",
+  "style_checked_files": 16,
+  "style_checked_lines": 1289,
+  "style_violations": 0,
+  "style_rate": 100.0,
+  "style_threshold": 90.0,
+  "style_meets": true,
+  "tiers": {
+    "tiers": [
+      {
+        "tier": "及格(D)",
+        "key": "D",
+        "need": "≥6 个变量、≥3 种数据类型",
+        "rate_min": 70.0,
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "良好(C)",
+        "key": "C",
+        "need": "输出格式清晰对齐（实测口径：≥5 条键值行冒号同列）；换算正确（实测口径：独立公式逐条复核 0 失败）",
+        "rate_min": null,
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "优秀(B)",
+        "key": "B",
+        "need": "≥8 变量、4 种类型；换算≥2 处",
+        "rate_min": 90.0,
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "优(A)",
+        "key": "A",
+        "need": "达 B 且使用 input() 录入并校验（温度范围提示）",
+        "rate_min": 90.0,
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      }
+    ],
+    "claimed": "优(A)",
+    "measured": {
+      "ast_vars": 10,
+      "ast_types": 4,
+      "types": [
+        "bool",
+        "float",
+        "int",
+        "str"
+      ],
+      "conv_funcs": 3,
+      "conv_names": [
+        "c_to_f",
+        "kpa_to_mpa",
+        "mpa_to_psi"
+      ],
+      "conv_checked": 3,
+      "conv_failed": 0,
+      "colon_lines": 7,
+      "colon_same": 1,
+      "align_ok": true,
+      "input_probe_ok": true,
+      "input_hint_ok": true,
+      "input_detail": "越界/非数字当场拒收=True ｜ 范围提示进提问行=True ｜ 合法录入出卡=True",
+      "style_rate": 100.0
+    },
+    "gates": {
+      "D": {
+        "rate_min": 70.0,
+        "min_vars": 6,
+        "min_types": 3
+      },
+      "C": {
+        "rate_min": null
+      },
+      "B": {
+        "rate_min": 90.0,
+        "min_vars": 8,
+        "min_types": 4,
+        "min_conversions": 2
+      },
+      "A": {
+        "rate_min": 90.0
+      }
+    },
+    "manual": []
+  }
 }

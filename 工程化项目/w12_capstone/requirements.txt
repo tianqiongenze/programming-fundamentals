@@ -5,4 +5,8 @@
 #   1. 已安装包用 == 精确锁定；标 `# 待核验` 者本机未安装，请安装后回填版本。
 #   2. pyproject.toml 保留区间声明（库规范），此处用精确版（教学可复现）。
 #   3. 离线环境：pip install --no-index --find-links=./offline_wheels -r requirements.txt
-# 本项目仅依赖 Python 标准库，无需第三方包
+# 核心链路（采集→清洗→分级→词频→文本报告）仅依赖 Python 标准库
+# 交付物增强项（PDF 图文 + 词云）走 pyproject 的 full 能力组：
+#   pip install "w12_capstone[full]"  → reportlab / wordcloud / Pillow
+# 未安装时 pipeline 如实记 MISS（报告里打 ✗ 并写原因），不会假装产物已生成
+

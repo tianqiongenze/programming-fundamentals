@@ -1,14 +1,146 @@
 {
-  "n_devices": 2,
+  "n_devices": 3,
+  "attrs_per_instance": 7,
+  "methods": [
+    "get_status",
+    "level",
+    "log_text",
+    "patrol",
+    "set_temp",
+    "start",
+    "stop"
+  ],
   "ops": [
-    "DEV-01 空压机A 启动成功",
-    "DEV-02 冷却泵 启动成功",
+    "[02] DEV-01 启动成功 ｜运行｜41.2℃",
+    "[02] DEV-02 启动成功 ｜运行｜25.0℃",
+    "[02] DEV-03 启动成功 ｜运行｜63.8℃",
+    "方法调用等价写法: Device.start(d) == d.start()（self 自动传实例）",
     "已拦截重复启动: DEV-01 已在运行，请勿重复启动",
-    "已拦截重复停机: DEV-02 未运行，无需停机"
+    "[03] DEV-02 停机（此刻温度 25.0℃） ｜停机｜25.0℃",
+    "已拦截重复停机: DEV-02 未运行，无需停机",
+    "已拦截越界读数: DEV-03 温度 999.0℃ 超出量程"
   ],
   "errors": [],
   "flags": [
     true,
-    false
-  ]
+    false,
+    true
+  ],
+  "levels": {
+    "DANGER": 1,
+    "NORMAL": 2
+  },
+  "log_lines_total": 12,
+  "ast_structure": {
+    "n_classes": 1,
+    "n_attrs": 7,
+    "n_methods": 8,
+    "attrs": [
+      "code",
+      "danger",
+      "kind",
+      "logs",
+      "status",
+      "temp",
+      "warn"
+    ],
+    "methods": [
+      "get_status",
+      "level",
+      "log_text",
+      "patrol",
+      "running",
+      "set_temp",
+      "start",
+      "stop"
+    ]
+  },
+  "logs_per_device": {
+    "DEV-01": [
+      "[01] DEV-01 建档出厂 ｜停机｜41.2℃",
+      "[02] DEV-01 启动成功 ｜运行｜41.2℃",
+      "[03] DEV-01 重复启动被拦截（本就是运行态） ｜运行｜41.2℃",
+      "[04] DEV-01 读数刷新 ｜运行｜96.0℃",
+      "[05] DEV-01 读数刷新 ｜运行｜101.0℃"
+    ],
+    "DEV-02": [
+      "[01] DEV-02 建档出厂 ｜停机｜25.0℃",
+      "[02] DEV-02 启动成功 ｜运行｜25.0℃",
+      "[03] DEV-02 停机（此刻温度 25.0℃） ｜停机｜25.0℃",
+      "[04] DEV-02 重复停机被拦截（本就停机） ｜停机｜25.0℃"
+    ],
+    "DEV-03": [
+      "[01] DEV-03 建档出厂 ｜停机｜63.8℃",
+      "[02] DEV-03 启动成功 ｜运行｜63.8℃",
+      "[03] DEV-03 越界读数 999.0℃ 被拒绝（量程 -40~200） ｜运行｜63.8℃"
+    ]
+  },
+  "str_demo": [
+    "DEV-01 空压机A ｜运行｜101.0℃ [DANGER]",
+    "DEV-02 冷却泵 ｜停机｜25.0℃ [NORMAL]",
+    "DEV-03 变频器B ｜运行｜63.8℃ [NORMAL]"
+  ],
+  "has_dunder_str": true,
+  "has_get_status": true,
+  "timestamp": "2026-10-28 09:41:51",
+  "style_engine": "pycodestyle 2.14.0（业界标准）",
+  "style_engine_kind": "pycodestyle",
+  "style_checked_files": 15,
+  "style_checked_lines": 1326,
+  "style_violations": 0,
+  "style_rate": 100.0,
+  "style_threshold": 90.0,
+  "style_meets": true,
+  "tiers": {
+    "tiers": [
+      {
+        "tier": "及格(D)",
+        "gate": 75.0,
+        "need": "1 类 + 2 属性 + 2 方法 + 2 实例；规范率≥75%",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "良好(C)",
+        "gate": 80.0,
+        "need": "方法含状态校验（已启动再 start 给出提示）",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "优秀(B)",
+        "gate": 90.0,
+        "need": "≥3 属性 + ≥3 方法 + 3 实例；规范率≥90%",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "优(A)",
+        "gate": 90.0,
+        "need": "达 B 且方法间有协作（stop 后自动记录日志字符串）",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      }
+    ],
+    "claimed": "优(A)",
+    "measured": {
+      "n_classes": 1,
+      "n_attrs": 7,
+      "n_methods": 8,
+      "n_instances": 3,
+      "guard_ok": true,
+      "guard_msg": "DEV-01 已在运行，请勿重复启动",
+      "stop_log_ok": true,
+      "stop_log_lines": 5,
+      "manual": [
+        "预习单口述：一台变频器有哪些属性和方法",
+        "课中抽查：温度告警三级阈值判断（口述/白板）",
+        "提交物核对：对象调用输出截图与 report.txt 实测行一致"
+      ]
+    }
+  }
 }

@@ -1,8 +1,35 @@
 # -*- coding: utf-8 -*-
-"""中文故障文本：二元词分词、停用词过滤、词频统计（纯函数，零依赖）。"""
+"""中文故障文本：jieba 精确分词（可降级）、二元词兜底、停用词、词频统计。"""
 import re
 
 STOP = {"设备", "系统", "发生", "进行", "状态"}
+
+
+def jieba_tokens(text):
+    """jieba 精确模式分词（工单 W09 任务要求②）；未安装返回 None（走兜底）。"""
+    try:
+        import jieba
+    except ImportError:
+        return None
+    return [t.strip() for t in jieba.cut(text, cut_all=False) if t.strip()]
+
+
+def keyword_tags(texts, k=20):
+    """jieba.analyse.extract_tags Top-K 关键词（工单任务要求③）。
+
+    未安装 jieba 时返回 None——调用方回落二元词统计，通道如实写进报告。
+    带权重与否跨版本参数名不同（withWeight/with_weights），逐级降级调用。
+    """
+    try:
+        from jieba import analyse
+    except ImportError:
+        return None
+    text = "".join(texts)
+    try:
+        return list(analyse.extract_tags(text, topK=int(k),
+                                         withWeight=True))
+    except TypeError:
+        return [(w, 1.0) for w in analyse.extract_tags(text, topK=int(k))]
 
 
 def tokenize(text):

@@ -1,27 +1,55 @@
 ================================================================
-生成时间: 2026-10-15 09:06:29
+生成时间: 2026-10-28 09:41:54
 ================================================================
 
 [输入口径]
 ----------------------------------------------------------------
-原始行 6 条｜温度 0~200℃｜压力 0~5.0MPa
+原始行 7 条｜温度 0~200℃｜压力 0~5.0MPa
+数据来源: /Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w06_robust_collector/output/raw_data.txt（现场文件 data/live_measurements.csv）
 
-[采集成功]
+[采集统计（实测）]
 ----------------------------------------------------------------
-成功 3 条（50.0%）
+成功 3 条｜跳过(隔离) 4 条｜合计 7 条｜统计自洽: 是
 
 [隔离区]
 ----------------------------------------------------------------
-第 2行 'err,0.46'     原因: 非数值: 'err,0.46'
-第 3行 '57.5,'        原因: 非数值: '57.5,'
-第 6行 'abc,xyz'      原因: 非数值: 'abc,xyz'
+第 2行 'err,0.46'     原因: 非数值: could not convert string to float: 'err'
+第 3行 '57.5,'        原因: 非数值: could not convert string to float: ''
+第 4行 '61.0'         原因: 缺字段: list index out of range
+第 7行 'abc,xyz'      原因: 非数值: could not convert string to float: 'abc'
 
 [失败原因分布]
 ----------------------------------------------------------------
-非数值: '57.5,': 1 条
-非数值: 'abc,xyz': 1 条
-非数值: 'err,0.46': 1 条
+缺字段: list index out of range: 1 条
+非数值: could not convert string to float: '': 1 条
+非数值: could not convert string to float: 'abc': 1 条
+非数值: could not convert string to float: 'err': 1 条
+
+[日志与异常（logging 实测）]
+----------------------------------------------------------------
+日志文件: /Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w06_robust_collector/output/run.log（共 54 行）
+级别分布: INFO 29 / WARNING 20 / ERROR 5
+可定位到行（日志含'第N行'）: 35 处
+本次实际捕获异常类型: FileNotFoundError, IndexError, ValueError
+finally 收尾已执行: 是
+脏数据备查: /Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w06_robust_collector/output/bad_records.csv（4 行）
+
+[编码规范率（PEP 8 实测）]
+----------------------------------------------------------------
+体检引擎: pycodestyle 2.14.0（业界标准）
+统计范围: run.py, src, tests（14 个文件 / 1025 有效行）
+公式: 规范率 = (1 - 违规条数 / 有效行数) × 100%
+违规条数: 0（涉及 0 行）（零违规）
+规范率实测: 100.0%｜工单门槛: ≥90% → 达标
+
+[验收档位判定（实测）]
+----------------------------------------------------------------
+实测达成档位: 优(A) ｜ 实测捕获异常 3 种 ｜ 日志 54 行（INFO 29/WARNING 20/ERROR 5）｜ 定位到行 35 处 ｜ bad_records.csv 4 行
+  及格(D)    规范率门槛≥75% [达标] ｜ 功能OK ｜ 处理≥2 种异常 + 基本日志（run.log 非空）
+  良好(C)    规范率门槛≥80% [达标] ｜ 功能OK ｜ INFO/WARNING/ERROR 三级日志分明；统计输出正确
+  优秀(B)    规范率门槛≥90% [达标] ｜ 功能OK ｜ ≥3 种异常 + 完整 finally；日志可定位到行
+  优(A)     规范率门槛≥90% [达标] ｜ 功能OK ｜ 达 B 且脏数据自动写入 bad_records.csv 备查
 
 [结论与建议]
 ----------------------------------------------------------------
-坏数据不进结果集；隔离区需人工复核后决定重采或补录
+坏数据不进结果集，已自动写入 bad_records.csv 备查；人工复核隔离区后决定重采或补录

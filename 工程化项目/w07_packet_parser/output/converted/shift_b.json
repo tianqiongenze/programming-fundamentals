@@ -1,0 +1,14 @@
+[
+  {
+    "id": "D2",
+    "temp": 81.0,
+    "press": 0.5,
+    "format": "csv"
+  },
+  {
+    "id": "D4",
+    "temp": 60.0,
+    "press": 0.3,
+    "format": "json"
+  }
+]

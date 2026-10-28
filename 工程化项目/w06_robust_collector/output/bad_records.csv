@@ -1,0 +1,5 @@
+line,raw,reason
+2,"err,0.46",非数值: could not convert string to float: 'err'
+3,"57.5,",非数值: could not convert string to float: ''
+4,61.0,缺字段: list index out of range
+7,"abc,xyz",非数值: could not convert string to float: 'abc'

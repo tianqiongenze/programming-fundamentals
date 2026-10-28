@@ -4,9 +4,30 @@ unit: "c"
 seed: 7
 topk: 3
 
+# starter 报文样例（含 3 类容错样本：未知格式 / 缺字段 / 乱序键值）
 packets:
   - '{"id":"D1","t":78.5,"p":0.42}'
   - "D2,81.0,0.50"
   - "id=D3;t=95.5;p=0.66"
   - "损坏报文@@@"
   - '{"id":"D4","t":60.0,"p":0.30}'
+  - "t=96.0;p=0.55;id=D5"
+  - "id=D6;t=77.7"
+
+# ── A 档批量转换：报文按班次拆成 output/samples/ 下多个样本文件 ──
+# pipeline 确定性生成样本 → 真实逐文件读盘解析 → 产物落 output/converted/
+batch_files: "shift_a.txt,shift_b.txt,shift_c.txt"
+
+# ── 工单 W07 四档验收门槛（数字外置；tiers.py 经 config.tier_gates 读出）──
+# 规范率门逐档取自工单验收表（C 档工单未注数值，沿用体系口径 80）；
+# 功能门数字（≥N 种格式 / ≥N 个样本文件）同样外置，禁止为变绿调低。
+tiers:
+  D_style_min: 75.0
+  C_style_min: 80.0
+  B_style_min: 90.0
+  A_style_min: 90.0
+  D_min_formats: 2
+  D_min_regex_kv: 1
+  B_min_formats: 3
+  B_min_bad: 1
+  A_min_batch_files: 3

@@ -1,11 +1,11 @@
 {
-  "total": 5,
-  "parsed": 4,
-  "bad": 1,
+  "total": 7,
+  "parsed": 5,
+  "bad": 2,
   "by_format": {
     "json": 2,
     "csv": 1,
-    "kv": 1
+    "kv": 2
   },
   "rows": [
     {
@@ -31,13 +31,148 @@
       "temp": 60.0,
       "press": 0.3,
       "format": "json"
+    },
+    {
+      "id": "D5",
+      "temp": 96.0,
+      "press": 0.55,
+      "format": "kv"
     }
   ],
   "quarantine": [
     {
       "line": 4,
       "raw": "损坏报文@@@",
-      "reason": "未知格式/解析失败"
+      "reason": "未知格式"
+    },
+    {
+      "line": 7,
+      "raw": "id=D6;t=77.7",
+      "reason": "kv 格式缺字段/值错误"
     }
-  ]
+  ],
+  "stats_ok": true,
+  "uniform_structure": true,
+  "fault_tolerance": {
+    "out_of_order_ok": true,
+    "missing_field_ok": true
+  },
+  "batch": {
+    "files": 3,
+    "lines": 7,
+    "n_ok": 5,
+    "n_fail": 2,
+    "rows": 5,
+    "by_format": {
+      "json": 2,
+      "csv": 1,
+      "kv": 2
+    },
+    "samples_dir": "/Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w07_packet_parser/output/samples",
+    "converted_dir": "/Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w07_packet_parser/output/converted"
+  },
+  "artifacts": {
+    "converted.json": {
+      "path": "/Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w07_packet_parser/output/converted.json",
+      "rows": 5,
+      "bytes": 410
+    }
+  },
+  "style_rate": 100.0,
+  "style_violations": 0,
+  "style_engine": "pycodestyle 2.14.0（业界标准）",
+  "tiers": {
+    "tiers": [
+      {
+        "tier": "及格(D)",
+        "gate": 75.0,
+        "need": "处理≥2 种格式 + 使用正则（kv 通道实测走通）；规范率≥75%",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "良好(C)",
+        "gate": 80.0,
+        "need": "三种格式全通；字典结构统一（实测键集合一致）",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "优秀(B)",
+        "gate": 90.0,
+        "need": "≥3 种格式 + 容错（缺字段/乱序报文实测通过）；规范率≥90%",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "优(A)",
+        "gate": 90.0,
+        "need": "达 B 且批量转换多个样本文件并输出转换统计（实测计数）",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      }
+    ],
+    "claimed": "优(A)",
+    "measured": {
+      "formats": [
+        "csv",
+        "json",
+        "kv"
+      ],
+      "n_regex_kv": 2,
+      "uniform": true,
+      "n_bad": 2,
+      "out_of_order_ok": true,
+      "missing_field_ok": true,
+      "batch": {
+        "files": 3,
+        "lines": 7,
+        "n_ok": 5,
+        "n_fail": 2,
+        "rows": 5,
+        "by_format": {
+          "json": 2,
+          "csv": 1,
+          "kv": 2
+        },
+        "per_file": [
+          {
+            "file": "shift_a.txt",
+            "lines": 3,
+            "ok": 1,
+            "fail": 2,
+            "out": "/Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w07_packet_parser/output/converted/shift_a.json",
+            "out_rows": 1
+          },
+          {
+            "file": "shift_b.txt",
+            "lines": 2,
+            "ok": 2,
+            "fail": 0,
+            "out": "/Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w07_packet_parser/output/converted/shift_b.json",
+            "out_rows": 2
+          },
+          {
+            "file": "shift_c.txt",
+            "lines": 2,
+            "ok": 2,
+            "fail": 0,
+            "out": "/Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w07_packet_parser/output/converted/shift_c.json",
+            "out_rows": 2
+          }
+        ],
+        "samples_dir": "/Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w07_packet_parser/output/samples",
+        "converted_dir": "/Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w07_packet_parser/output/converted"
+      },
+      "manual": [
+        "课堂决策矩阵（列表/字典/集合选型）工单填写照片核对",
+        "课中抽查：能 import random 生成测试数据（口述/白板）",
+        "提交物核对：转换输出样例与 report.txt 实测行一致"
+      ]
+    }
+  }
 }

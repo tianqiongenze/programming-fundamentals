@@ -1,11 +1,38 @@
+# 告警阈值与用例（改配置不改代码）
+# 工单 W02 任务1：温度阈值 80/95℃、压力阈值 0.8MPa；B 档三级=提示/警告/停机
 warn: 80.0
 danger: 95.0
-press_warn: 0.55
-press_danger: 0.65
+press_warn: 0.55      # 压力预警（0.55→警告带）
+press_danger: 0.65    # 压力停机（0.65→停机带）
+press_limit: 0.8      # 工单点名的压力阈值 0.8MPa：硬上限，与温度同超即"紧急"
 dedup_seconds: 10
 unit: "c"
 seed: 7
 topk: 3
+style_min: 90.0
+
+# ── 工单 W02《验收标准》四档门槛（数字唯一出处，run.py 实测判定用）──
+# rate_min 留空表示工单该档未写规范率门槛——不编造数字，只判功能项；
+# A 档"达B"→ 规范率沿用 B 的 85。
+tiers:
+  D:
+    rate_min: 70.0
+    min_ifs: 2
+    min_alarm_fns: 1
+  C:
+    rate_min:
+    boundary_groups: 5
+  B:
+    rate_min: 85.0
+    min_nest_depth: 2
+    min_levels: 3
+  A:
+    rate_min: 85.0
+    min_devices: 3
+
+# 工单任务3 的五组温度边界值 + 压力边界值（可 --set 覆盖后复测）
+boundary_temps: [79.9, 80.0, 94.9, 95.0, 100.0]
+boundary_press: [0.54, 0.55, 0.64, 0.65, 0.80]
 
 readings:
   - ts: 79.8
@@ -24,5 +51,17 @@ readings:
     temp: 95.0
     press: 0.66
   - ts: 100.0
-    temp: 96.0
-    press: 0.60
+    temp: 100.0
+    press: 0.80
+
+# A 档：循环测试 3 台设备（为 W3 铺垫；列表+字典组织）
+devices:
+  - code: "PUMP-01"
+    temp: 79.9
+    press: 0.40
+  - code: "PUMP-02"
+    temp: 88.0
+    press: 0.58
+  - code: "VFD-03"
+    temp: 96.5
+    press: 0.82

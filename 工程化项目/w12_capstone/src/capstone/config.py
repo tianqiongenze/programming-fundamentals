@@ -111,6 +111,38 @@ class Settings:
     items: List[Any] = field(default_factory=list)
     raw: Dict[str, Any] = field(default_factory=dict)
 
+    def get(self, key, default=None):
+        """任意配置项读取：raw 优先，缺失回落 default（pipeline 项目专属参数）。"""
+        if key in self.raw:
+            return self.raw[key]
+        v = DEFAULTS.get(key, default)
+        return default if v is None else v
+
+    def num(self, key, default=0.0):
+        """数值型配置（字符串也尽力转换，转不动就兜底）。"""
+        try:
+            return float(self.get(key, default))
+        except (TypeError, ValueError):
+            return float(default)
+
+    def flag(self, key, default=False):
+        """布尔型配置。"""
+        v = self.get(key, default)
+        if isinstance(v, str):
+            return v.strip().lower() in ("1", "true", "yes", "y", "on")
+        return bool(v)
+
+    def seq(self, key, default=None):
+        """列表型配置（YAML 块列表 / 逗号分隔字符串均可）。"""
+        v = self.get(key, None)
+        if v is None:
+            return list(default or [])
+        if isinstance(v, str):
+            return [x.strip() for x in v.split(",") if x.strip()]
+        if isinstance(v, (list, tuple)):
+            return list(v)
+        return [v]
+
     @classmethod
     def from_dict(cls, d):
         if not isinstance(d, dict):

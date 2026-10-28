@@ -1,23 +1,208 @@
 {
   "n_devices": 3,
-  "n_cycles": 12,
+  "n_cycles": 10,
+  "seed": 3,
   "order": [
-    "DEV-01",
     "DEV-02",
+    "DEV-01",
     "DEV-03"
   ],
+  "functions": [
+    "check_device(d)",
+    "alarm(level, msg)",
+    "patrol()",
+    "patrol_while()",
+    "count_alarms()",
+    "summarize()"
+  ],
+  "totals": {
+    "warn": 11,
+    "danger": 4,
+    "emergency": 0,
+    "alarms": 15
+  },
+  "measured": {
+    "n_funcs": 12,
+    "doc_defs": 12,
+    "body_lines": {
+      "alarm": 2,
+      "check_device": 14,
+      "jitter": 2,
+      "count_alarms": 5,
+      "_stat_one": 9,
+      "patrol": 15,
+      "_exit_reason": 6,
+      "while_one": 15,
+      "patrol_while": 8,
+      "summarize": 4,
+      "priority": 2,
+      "series": 3
+    },
+    "max_body": 15,
+    "named_funcs": 2,
+    "for_loops_patrol": 2,
+    "devices": 3,
+    "n_cycles": 10,
+    "samples": 30,
+    "stats_ok": true,
+    "while_max_cycles": 10,
+    "while_cap": 10,
+    "bounded_ok": true,
+    "has_doc": true,
+    "doc_chars": 3060,
+    "doc_rel": "docs/09-函数化收益对比-W02到W03.md",
+    "w02": {
+      "ok": true,
+      "detail": "判级 ≥ 比较点 13→6 处 ｜ 判级函数 3→1 个（check_device）｜ core 有效行 106→113",
+      "ge_w02": 13,
+      "ge_w03": 6,
+      "fns_w02": 3,
+      "fns_w03": 1,
+      "lines_w02": 106,
+      "lines_w03": 113
+    },
+    "style_rate": 100.0
+  },
   "stat": {
     "DEV-01": {
-      "warn": 6,
-      "danger": 2
+      "warn": 5,
+      "danger": 0,
+      "emergency": 0,
+      "alarms": 5,
+      "cycles": 10
     },
     "DEV-02": {
       "warn": 6,
-      "danger": 2
+      "danger": 0,
+      "emergency": 0,
+      "alarms": 6,
+      "cycles": 10
     },
     "DEV-03": {
-      "warn": 7,
-      "danger": 1
+      "warn": 0,
+      "danger": 4,
+      "emergency": 0,
+      "alarms": 4,
+      "cycles": 10
     }
+  },
+  "while_exits": {
+    "DEV-01": "跑满 10 个周期正常退出",
+    "DEV-02": "跑满 10 个周期正常退出",
+    "DEV-03": "跑满 10 个周期正常退出"
+  },
+  "a_tier_doc": "docs/09-函数化收益对比-W02到W03.md",
+  "style_engine": "pycodestyle 2.14.0（业界标准）",
+  "style_engine_kind": "pycodestyle",
+  "style_checked_files": 16,
+  "style_checked_lines": 1261,
+  "style_violations": 0,
+  "style_rate": 100.0,
+  "style_threshold": 85.0,
+  "style_meets": true,
+  "tiers": {
+    "tiers": [
+      {
+        "tier": "及格(D)",
+        "key": "D",
+        "need": "循环跑通（设备×周期双层 for 实跑）+ 2 函数 check_device/alarm",
+        "rate_min": 70.0,
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "良好(C)",
+        "key": "C",
+        "need": "统计报告正确（逐台复算核对）；无死循环风险（有界实测）",
+        "rate_min": null,
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "优秀(B)",
+        "key": "B",
+        "need": "函数职责清晰（每个函数≤15 行，AST 实测）；注释清晰（docstring 全覆盖）",
+        "rate_min": 85.0,
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "优(A)",
+        "key": "A",
+        "need": "达 B 且重构 W02 代码对比说明「函数化收益」（对照数字实测）",
+        "rate_min": 85.0,
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      }
+    ],
+    "claimed": "优(A)",
+    "measured": {
+      "n_funcs": 12,
+      "doc_defs": 12,
+      "body_lines": {
+        "alarm": 2,
+        "check_device": 14,
+        "jitter": 2,
+        "count_alarms": 5,
+        "_stat_one": 9,
+        "patrol": 15,
+        "_exit_reason": 6,
+        "while_one": 15,
+        "patrol_while": 8,
+        "summarize": 4,
+        "priority": 2,
+        "series": 3
+      },
+      "max_body": 15,
+      "named_funcs": 2,
+      "for_loops_patrol": 2,
+      "devices": 3,
+      "n_cycles": 10,
+      "samples": 30,
+      "stats_ok": true,
+      "while_max_cycles": 10,
+      "while_cap": 10,
+      "bounded_ok": true,
+      "has_doc": true,
+      "doc_chars": 3060,
+      "doc_rel": "docs/09-函数化收益对比-W02到W03.md",
+      "w02": {
+        "ok": true,
+        "detail": "判级 ≥ 比较点 13→6 处 ｜ 判级函数 3→1 个（check_device）｜ core 有效行 106→113",
+        "ge_w02": 13,
+        "ge_w03": 6,
+        "fns_w02": 3,
+        "fns_w03": 1,
+        "lines_w02": 106,
+        "lines_w03": 113
+      },
+      "style_rate": 100.0
+    },
+    "gates": {
+      "D": {
+        "rate_min": 70.0,
+        "min_functions": 2,
+        "min_samples": 30
+      },
+      "C": {
+        "rate_min": null
+      },
+      "B": {
+        "rate_min": 85.0,
+        "max_fn_lines": 15,
+        "min_doc_ratio": 1.0
+      },
+      "A": {
+        "rate_min": 85.0,
+        "w02_core": "../w02_alarm_engine/src/alarm_engine/core.py"
+      }
+    },
+    "manual": [
+      "「函数化收益」的取舍口头解释（对照数字已实测：判级比较点/函数数/行数）"
+    ]
   }
 }

@@ -4,6 +4,7 @@ unit: "c"
 seed: 11
 topk: 3
 
+# starter 数据行（含 3 类脏样本，对应三维度验证：缺失/类型/范围——勿删）
 rows:
   - code: DEV-01
     temp: 56.5
@@ -17,3 +18,20 @@ rows:
   - code: DEV-04
     temp: 96.0
     press: 0.66
+  - code: DEV-05
+    temp:
+    press: 0.42
+  - code: DEV-06
+    temp: "err"
+    press: 0.41
+  - code: DEV-07
+    temp: 135.0
+    press: 0.39
+
+# 工单验收标准的规范率门槛（数字外置，改配置不改代码；tiers.py 从这里读）
+# 及格(D)≥75%、优秀(B)≥90% 为工单明文；C/A 档工单未标 %，取不降门槛的常规值
+tiers:
+  D: 75.0
+  C: 80.0
+  B: 90.0
+  A: 90.0

@@ -1,9 +1,33 @@
 # 设备台账参数（改配置不改代码）
+# 工单 W01 验收对应：style_min = 本项目承诺档位的规范率门槛（stylecheck 实测）
 warn: 80.0
 danger: 95.0
 unit: "c"
 seed: 7
 topk: 3
+style_min: 90.0
+interactive: false     # true 则追加 A 档 input() 录入段落（run.py --set interactive=true）
+
+# ── 工单 W01《验收标准》四档门槛（数字唯一出处，run.py 实测判定用）──
+# rate_min: null 表示工单该档未写规范率门槛——不编造数字，只判功能项。
+# A 档"达B"→ 规范率沿用 B 的 90。
+tiers:
+  D:
+    rate_min: 70.0
+    min_vars: 6
+    min_types: 3
+  C:
+    rate_min:
+  B:
+    rate_min: 90.0
+    min_vars: 8
+    min_types: 4
+    min_conversions: 2
+  A:
+    rate_min: 90.0
+  # A 档实测路径喂给真 input() 的 stdin 样本（越界 999 / 非数字 abc 必须先被拒收）
+  input_feed: "DEV-PROBE\n探针泵\n999\nabc\n75\n450\n380\n2024\ny\n"
+
 
 devices:
   - code: "DEV-2026-001"
@@ -12,15 +36,27 @@ devices:
     press_kpa: 450.0
     rpm: 1480
     status: running
+    voltage: 380.0
+    power_kw: 22.0
+    install_year: 2023
+    running: true
   - code: "DEV-2026-002"
     name: 液压折弯机
     temp: 61.2
     press_kpa: 620.0
     rpm: 980
     status: running
+    voltage: 380.0
+    power_kw: 15.5
+    install_year: 2022
+    running: true
   - code: "DEV-2026-003"
     name: 空压机A
     temp: 47.8
     press_kpa: 780.0
     rpm: 1450
     status: stopped
+    voltage: 220.0
+    power_kw: 7.5
+    install_year: 2021
+    running: false

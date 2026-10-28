@@ -1,4 +1,5 @@
 {
+  "source": "config/rules.yaml",
   "rows": [
     {
       "code": "DEV-01",
@@ -37,8 +38,90 @@
       "DEV-04"
     ]
   },
+  "checked": 7,
+  "quarantine": [
+    {
+      "line": 5,
+      "raw": "{'code': 'DEV-05', 'temp': None, 'press': 0.42}",
+      "dimension": "缺失",
+      "reason": "字段 temp 为空"
+    },
+    {
+      "line": 6,
+      "raw": "{'code': 'DEV-06', 'temp': 'err', 'press': 0.41}",
+      "dimension": "类型",
+      "reason": "数值字段含非数值: temp='err' press=0.41"
+    },
+    {
+      "line": 7,
+      "raw": "{'code': 'DEV-07', 'temp': 135.0, 'press': 0.39}",
+      "dimension": "范围",
+      "reason": "温度越界 135.0℃（0~120℃）"
+    }
+  ],
+  "dimensions": {
+    "缺失": 1,
+    "类型": 1,
+    "范围": 1
+  },
   "roundtrip": {
     "csv": true,
     "json": true
+  },
+  "bad_csv": "/Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w08_data_fileio/output/bad.csv",
+  "bad_csv_rows": 3,
+  "header_ok": true,
+  "input_demo_ok": true,
+  "style_rate": 100.0,
+  "style_violations": 0,
+  "style_engine": "pycodestyle 2.14.0（业界标准）",
+  "tiers": {
+    "tiers": [
+      {
+        "tier": "及格(D)",
+        "gate": 75.0,
+        "need": "CSV+JSON 双格式读写且 round-trip 通过 + 基本验证",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "良好(C)",
+        "gate": 80.0,
+        "need": "缺失/类型/范围三维验证齐全；bad.csv 可追溯",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "优秀(B)",
+        "gate": 90.0,
+        "need": "清洗报告清晰（维度计数入报告）；输出规范列名",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "优(A)",
+        "gate": 90.0,
+        "need": "达 B 且 --input/--encoding 输入文件通道实测走通（GBK 演示）",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      }
+    ],
+    "claimed": "优(A)",
+    "measured": {
+      "n_checked": 7,
+      "dims": {
+        "缺失": 1,
+        "类型": 1,
+        "范围": 1
+      },
+      "n_bad": 3,
+      "bad_csv_rows": 3,
+      "header_ok": true,
+      "input_demo_ok": true
+    }
   }
 }

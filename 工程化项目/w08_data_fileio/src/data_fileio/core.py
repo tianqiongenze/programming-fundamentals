@@ -1,5 +1,31 @@
 # -*- coding: utf-8 -*-
-"""统计与读写一致性校验（纯函数）。"""
+"""统计与读写一致性校验、三维度数据验证（纯函数）。"""
+
+#: 三维度口径取自工单 W08 任务要求②：缺失（空值）/类型/范围（温度>120 越界）
+DIMENSIONS = ("缺失", "类型", "范围")
+TEMP_MIN, TEMP_MAX = 0.0, 120.0
+
+
+def validate_row(row):
+    """三维验证：任一行先过"缺失→类型→范围"三关，返回 (ok, 维度, 原因)。
+
+    范围维度只钉工单明文的温度界限（0~120℃），不擅自发明压力量程——
+    压力只查缺失与类型。坏行交调用方跳过并写入 bad.csv（工单要求③）。
+    """
+    for field in ("code", "temp", "press"):
+        v = row.get(field)
+        if v is None or (isinstance(v, str) and not v.strip()):
+            return False, "缺失", "字段 %s 为空" % field
+    try:
+        temp = float(row["temp"])
+        float(row["press"])
+    except (TypeError, ValueError):
+        return False, "类型", "数值字段含非数值: temp=%r press=%r" % (
+            row.get("temp"), row.get("press"))
+    if not (TEMP_MIN <= temp <= TEMP_MAX):
+        return False, "范围", "温度越界 %.1f℃（%.0f~%.0f℃）" % (
+            temp, TEMP_MIN, TEMP_MAX)
+    return True, "", ""
 
 
 def summarize(rows):

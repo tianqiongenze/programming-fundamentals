@@ -1,0 +1,32 @@
+[
+  {
+    "id": "D1",
+    "temp": 78.5,
+    "press": 0.42,
+    "format": "json"
+  },
+  {
+    "id": "D2",
+    "temp": 81.0,
+    "press": 0.5,
+    "format": "csv"
+  },
+  {
+    "id": "D3",
+    "temp": 95.5,
+    "press": 0.66,
+    "format": "kv"
+  },
+  {
+    "id": "D4",
+    "temp": 60.0,
+    "press": 0.3,
+    "format": "json"
+  },
+  {
+    "id": "D5",
+    "temp": 96.0,
+    "press": 0.55,
+    "format": "kv"
+  }
+]

@@ -1,19 +1,66 @@
+# 工单 W05《工业设备继承体系》——全部可调参数外置（改配置不改代码）
 warn: 80.0
 danger: 95.0
 unit: "c"
 seed: 7
 topk: 3
 
+# ── 编码规范率门槛（B/A 档要求 ≥90%）──
+style_min: 90.0
+
+# ── A 档交付物：is-a 设计判断正文 ──
+is_a_doc: "docs/09-is-a设计判断.md"
+station_code: "ST-01"          # 组合类"工位"的编号（它不是设备，所以没有温度）
+
+# ── 子类专属演示参数 ──
+demo_freq: 42.0                # 给变频器下发的演示频率（Hz，25~60 安全区间内）
+demo_adc: 1500                 # 给传感器的演示 ADC 原始计数（0~4095）
+
+# ── 异构设备清单：type 决定工厂分派到哪个子类 ──
+# 工厂只认 code/temp/warn/danger + 各自签名里的专属键（scan_ms / freq_hz / range_lo ...）
 fleet:
-  - type: pump
-    code: "PUMP-01"
-    temp: 58.0
-    freq_hz: 35
-  - type: pump
-    code: "PUMP-02"
+  - type: plc
+    code: "PLC-01"
+    kind: 主控 PLC
+    temp: 46.0
+    scan_ms: 80
+  - type: plc
+    code: "PLC-02"
+    kind: 备控 PLC
+    temp: 44.5
+    scan_ms: 120
+    warn: 70.0
+    danger: 88.0
+  - type: vfd
+    code: "VFD-03"
+    kind: 冷却风机变频
     temp: 61.5
     freq_hz: 50
-  - type: fan
-    code: "FAN-01"
-    temp: 45.0
-    delay_s: 3
+  - type: sensor
+    code: "TE-04"
+    kind: 管道温度传感器
+    temp: 25.0
+    range_lo: 0
+    range_hi: 150
+    unit: "℃"
+
+# ── 工单 W05 四档验收门槛（数字外置；tiers.py 经 config.tier_gates 读出）──
+# 规范率门逐档取自工单验收表（C 档工单未注数值，沿用体系口径 80）；
+# doc_rate 100 = "docstring 齐全"的字面口径；A 档正文字数/条目数为达标线，
+# 全部实测，禁止为变绿调低。
+tiers:
+  D_style_min: 75.0
+  C_style_min: 80.0
+  B_style_min: 90.0
+  A_style_min: 90.0
+  D_min_base: 1
+  D_min_subs: 2
+  D_min_overrides: 1
+  C_min_doc_rate: 100.0
+  C_min_poly_kinds: 2
+  C_min_poly_calls: 2
+  B_min_subs: 3
+  B_min_super: 3
+  B_max_super_gaps: 0
+  A_min_doc_chars: 600
+  A_min_doc_mentions: 3

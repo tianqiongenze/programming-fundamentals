@@ -1,17 +1,134 @@
 {
-  "n_devices": 3,
-  "dispatched": [
-    "PUMP-01 泵 35.0Hz 巡检[NORMAL]",
-    "PUMP-02 泵 50.0Hz 巡检[NORMAL]",
-    "FAN-01 风机 延时3s 巡检[NORMAL]"
+  "n_devices": 4,
+  "types": [
+    "PLCDevice",
+    "SensorDevice",
+    "VFDDevice"
+  ],
+  "subclasses": [
+    "PLCDevice",
+    "SensorDevice",
+    "VFDDevice"
+  ],
+  "n_subclasses": 3,
+  "mro": {
+    "PLCDevice": "PLCDevice → Device → ABC",
+    "VFDDevice": "VFDDevice → Device → ABC",
+    "SensorDevice": "SensorDevice → Device → ABC"
+  },
+  "started": [
+    "[02] PLC-01 PLC 控制器 启动 ｜运行｜46.0℃ ｜上电自检: PLC-01 第1个扫描周期 80ms｜输入采样 → 程序执行 → 输出刷新",
+    "[02] PLC-02 PLC 控制器 启动 ｜运行｜44.5℃ ｜上电自检: PLC-02 第1个扫描周期 120ms｜输入采样 → 程序执行 → 输出刷新",
+    "[03] VFD-03 变频器 启动 ｜运行｜61.5℃ ｜按 50.0Hz 爬升",
+    "[02] TE-04 传感器 启动 ｜运行｜25.0℃"
+  ],
+  "stopped": [
+    "[03] PLC-01 停机 ｜停机｜46.0℃",
+    "[03] PLC-02 停机 ｜停机｜44.5℃",
+    "[05] VFD-03 停机 ｜停机｜61.5℃ ｜频率回零（原 42.0Hz）",
+    "[04] TE-04 停机 ｜停机｜54.9℃"
   ],
   "extras": [
-    "PUMP-01 频率设定 35.0Hz",
-    "PUMP-02 频率设定 35.0Hz",
-    "FAN-01 风机将延时 3s 停机（防喘振）"
+    "  [专属] PLC-01 第2个扫描周期 80ms｜输入采样 → 程序执行 → 输出刷新",
+    "  [专属] PLC-02 第2个扫描周期 120ms｜输入采样 → 程序执行 → 输出刷新",
+    "  [专属] [04] VFD-03 频率设定 42.0Hz ｜运行｜61.5℃",
+    "  [专属] TE-04 ADC 1500 → 54.9℃"
   ],
-  "types": [
-    "FanDevice",
-    "PumpDevice"
-  ]
+  "docstring_rate": 100.0,
+  "super_overrides": 3,
+  "composition_used": true,
+  "ast_family": {
+    "n_base": 1,
+    "n_subs": 3,
+    "sub_names": [
+      "PLCDevice",
+      "SensorDevice",
+      "VFDDevice"
+    ],
+    "n_overrides": 9,
+    "n_super": 6,
+    "gaps": 0,
+    "gap_rows": [],
+    "poly_kinds": 2,
+    "doc_total": 37,
+    "doc_filled": 37
+  },
+  "is_a_doc_stats": {
+    "present": true,
+    "chars": 2376,
+    "mentions": 8,
+    "path": "/Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w05_device_family/docs/09-is-a设计判断.md"
+  },
+  "poly": {
+    "calls": 4,
+    "distinct": 4
+  },
+  "is_a_doc": "docs/09-is-a设计判断.md",
+  "polymorphic_calls": 8,
+  "style_engine": "pycodestyle 2.14.0（业界标准）",
+  "style_engine_kind": "pycodestyle",
+  "style_checked_files": 15,
+  "style_checked_lines": 1658,
+  "style_violations": 0,
+  "style_rate": 100.0,
+  "style_threshold": 90.0,
+  "style_meets": true,
+  "tiers": {
+    "tiers": [
+      {
+        "tier": "及格(D)",
+        "gate": 75.0,
+        "need": "1 基类 + 2 子类 + 继承覆盖；规范率≥75%",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "良好(C)",
+        "gate": 80.0,
+        "need": "多态调用演示清晰；docstring 齐全",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "优秀(B)",
+        "gate": 90.0,
+        "need": "≥3 子类；规范率≥90%；覆盖方法内用 super() 协作",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "优(A)",
+        "gate": 90.0,
+        "need": "达 B 且体现「is-a」设计判断（说明为什么不用继承实现某设备）",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      }
+    ],
+    "claimed": "优(A)",
+    "measured": {
+      "n_base": 1,
+      "n_subs": 3,
+      "n_overrides": 9,
+      "n_super": 6,
+      "super_gaps": 0,
+      "doc": "37/37=100%",
+      "poly_kinds": 2,
+      "poly_calls": 4,
+      "poly_distinct": 4,
+      "isa_present": true,
+      "isa_chars": 2376,
+      "isa_mentions": 8,
+      "comp_ok": true,
+      "manual": [
+        "多态调用演示讲解是否清晰（『清晰』属口头答辩项，实测只判各自输出确有差异）",
+        "提交物核对：继承体系类图照片",
+        "课中抽查：能用循环处理 10 台设备数据（口述/白板）",
+        "A 档答辩：口头说明为什么工位不用继承实现"
+      ]
+    }
+  }
 }

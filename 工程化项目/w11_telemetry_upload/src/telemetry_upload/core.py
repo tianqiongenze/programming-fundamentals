@@ -6,13 +6,23 @@ import time
 
 
 def read_all(devices, seed=0):
-    """按种子固定生成一轮寄存器读数（虚拟设备）。"""
+    """按种子固定生成一轮寄存器读数（虚拟设备，实跑失败时的降级通道）。"""
     import random
     r = random.Random(seed)
     return [{"code": str(d["code"]),
              "temp": round(r.uniform(float(d["temp"]) - 2, float(d["temp"]) + 2), 2),
              "press": round(r.uniform(float(d["press"]) - 0.02, float(d["press"]) + 0.02), 3)}
             for d in devices]
+
+
+def payload(row, ts=None):
+    """工单 B05/C 档：读数拼成规范 JSON 消息——固定 id/ts/metrics 三键。"""
+    if ts is None:
+        ts = int(time.time())
+    return {"id": str(row["code"]),
+            "ts": int(ts),
+            "metrics": {"temp": float(row["temp"]),
+                        "press": float(row["press"])}}
 
 
 def batches(items, size):

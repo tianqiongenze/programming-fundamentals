@@ -1,9 +1,59 @@
+# 巡检参数（改配置不改代码）
+# 工单 W03 任务1：用"列表 + 字典"组织 ≥3 台设备参数（为 W4 对象建模铺垫）
+# 工单 W03 任务2：for 遍历设备 × for 模拟 10 个周期（n_cycles 必须为 10）
 warn: 80.0
 danger: 95.0
+n_cycles: 10
 n_devices: 3
-n_cycles: 12
 base_temp: 70.0
 drift: 2.5
 unit: "c"
 seed: 3
 topk: 3
+style_min: 85.0
+a_tier_doc: "docs/09-函数化收益对比-W02到W03.md"
+
+# ── 工单 W03《验收标准》四档门槛（数字唯一出处，run.py 实测判定用）──
+# rate_min 留空表示工单该档未写规范率门槛——不编造数字，只判功能项；
+# A 档"达B"→ 规范率沿用 B 的 85。min_samples=30 取自工单任务1/2（≥3 台 × 10 周期）。
+tiers:
+  D:
+    rate_min: 70.0
+    min_functions: 2
+    min_samples: 30
+  C:
+    rate_min:
+  B:
+    rate_min: 85.0
+    max_fn_lines: 15
+    min_doc_ratio: 1.0
+  A:
+    rate_min: 85.0
+    # A 档对照实测的 W02 源码路径（相对本项目根目录；找不到就在报告里记 MISS）
+    w02_core: "../w02_alarm_engine/src/alarm_engine/core.py"
+
+devices:
+  - code: "DEV-01"
+    kind: 注塑机
+    base_temp: 68.0
+    drift: 2.6
+    press: 0.42
+    warn: 80.0
+    danger: 95.0
+    press_danger: 0.65
+  - code: "DEV-02"
+    kind: 冷却泵
+    base_temp: 72.5
+    drift: 2.2
+    press: 0.58
+    warn: 80.0
+    danger: 95.0
+    press_danger: 0.65
+  - code: "DEV-03"
+    kind: 空压机A
+    base_temp: 64.0
+    drift: 3.1
+    press: 0.66
+    warn: 80.0
+    danger: 95.0
+    press_danger: 0.65

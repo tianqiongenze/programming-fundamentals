@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
-"""工业报文解析器：策略模式 + 路由表（新增格式零改动调用方）。"""
+"""工业报文解析器：策略模式 + 路由表（新增格式零改动调用方）。
+
+键值报文用正则提取（工单 W07 任务要求①）：按"键=值"配对抓取，
+天然与字段顺序无关——乱序报文照样解析（B 档容错项）。
+"""
 import json
+import re
+
+KV_RE = re.compile(r"(?P<key>[A-Za-z_][A-Za-z0-9_]*)\s*=\s*(?P<val>[^;]+)")
 
 
 def parse_json(s):
@@ -18,11 +25,8 @@ def parse_csv(s):
 
 
 def parse_kv(s):
-    """键值报文: id=D3;t=95.5;p=0.66"""
-    out = {}
-    for kv in s.split(";"):
-        k, _, v = kv.partition("=")
-        out[k.strip()] = v.strip()
+    """键值报文: id=D3;t=95.5;p=0.66（正则提取键值，顺序无关）。"""
+    out = {m.group("key"): m.group("val").strip() for m in KV_RE.finditer(s)}
     return {"id": out["id"], "temp": float(out["t"]), "press": float(out["p"])}
 
 
@@ -44,3 +48,18 @@ def parse(packet):
         except (ValueError, KeyError, json.JSONDecodeError):
             continue
     return None
+
+
+def failure_reason(packet):
+    """隔离归因（B 档"缺字段/乱序容错"的可复核证据）：
+
+    命中某格式路由但取值失败 → 缺字段/值错误（写明格式名）；
+    没有任何路由命中 → 未知格式。只做归因，不改变 parse 的 None 语义。
+    """
+    for name, match, fn in PARSERS:
+        try:
+            if match(packet):
+                fn(packet)
+        except (ValueError, KeyError, IndexError, json.JSONDecodeError):
+            return "%s 格式缺字段/值错误" % name
+    return "未知格式"

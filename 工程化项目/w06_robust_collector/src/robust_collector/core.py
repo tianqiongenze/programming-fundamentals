@@ -17,6 +17,19 @@ def parse_line(line):
         raise ParseError("非数值: %r" % line)
 
 
+def parse_row(line):
+    """字段级解析：让原生异常如实上抛（采集主循环的异常路径实练）。
+
+    与 parse_line 的分工：parse_line 把错误打包成 ParseError（对外语义统一），
+    parse_row 保留原始类型——非数值→ValueError、字段缺失→IndexError——
+    pipeline 按类型分诊捕获，"实际捕获到几种异常"因此可实测、可复盘。
+    """
+    parts = [p.strip() for p in line.split(",")]
+    temp = float(parts[0])
+    press = float(parts[1])
+    return temp, press
+
+
 def validate(temp, press):
     """三重校验：空值/负值/越界。返回 (ok, reason)。"""
     if temp is None or press is None:

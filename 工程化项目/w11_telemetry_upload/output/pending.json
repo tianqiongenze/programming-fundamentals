@@ -1,0 +1,17 @@
+[
+  {
+    "code": "MODBUS-01",
+    "temp": 56.2,
+    "press": 0.4
+  },
+  {
+    "code": "MODBUS-02",
+    "temp": 61.0,
+    "press": 0.5
+  },
+  {
+    "code": "MODBUS-03",
+    "temp": 58.3,
+    "press": 0.4
+  }
+]

@@ -7,6 +7,17 @@ topk: 3
 batch_size: 3
 max_retry: 2
 
+# 工单 C 档：定时采集轮数与轮间隔（课堂可缩短）
+rounds: 5
+interval: 0.0
+
+# 真实通道口径（虚拟产线默认端口，见 README）
+modbus_host: "127.0.0.1"
+modbus_port: 5020
+mqtt_host: "127.0.0.1"
+mqtt_port: 1883
+topic: "device/1/status"
+
 devices:
   - code: "DEV-1"
     temp: 56.2
@@ -17,3 +28,17 @@ devices:
   - code: "DEV-3"
     temp: 58.3
     press: 0.44
+
+# 外部服务不可达时，在拉起本地真实服务面（自研 mini broker 子进程 +
+# pymodbus 本地从站）；设为 false 则只用现成服务，缺了如实判缺
+bring_up_services: true
+# B 档断线演示在第几轮后真实拔线（kill broker / 关闭连接）再重连
+disconnect_after_round: 3
+
+# 工单验收标准的规范率门槛（数字外置；tiers.py 从这里读）
+# 及格(D)≥80%、优秀(B)≥90% 为工单明文；C/A 档工单未标 %，取不降门槛的常规值
+tiers:
+  D: 80.0
+  C: 85.0
+  B: 90.0
+  A: 90.0

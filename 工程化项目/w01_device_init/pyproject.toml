@@ -4,13 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "w01_device_init"
-version = "1.0.0"
+version = "1.1.0"
 description = "设备参数初始化系统（02-程序设计基础 W01 第1次课）"
 requires-python = ">=3.10"
 dependencies = []
 
 [project.optional-dependencies]
-dev = ["pytest>=8.0", "PyYAML>=6.0"]
+# 核心链路零第三方依赖；以下为"有则更好"的能力组（环境也是选型维度）
+dev = ["pytest>=8.0", "PyYAML>=6.0", "pycodestyle>=2.12"]
+style = ["pycodestyle>=2.12", "flake8>=7.0"]
 
 [project.scripts]
 w01_device_init = "device_init.cli:main"
@@ -25,3 +27,19 @@ where = ["src"]
 testpaths = ["tests"]
 addopts = "-q --tb=short"
 pythonpath = ["src"]
+
+# ── 编码规范体检配置（工单每档都要求"规范率≥N%"）────────────────
+# src/device_init/stylecheck.py 读本节；等价命令：
+#   python -m pycodestyle --max-line-length=100 run.py src tests
+[tool.pycodestyle]
+max-line-length = 100
+ignore = ["E121", "E123", "E126", "E226", "E24", "E704", "W503", "W504"]
+
+# flake8 本体不读 pyproject（需 flake8-pyproject 插件）；此处保持同口径，
+# 装了插件即可直接 `python -m flake8 run.py src tests`。
+[tool.flake8]
+max-line-length = 100
+ignore = ["E121", "E123", "E126", "E226", "E24", "E704", "W503", "W504"]
+
+[tool.stylecheck]
+scope = ["run.py", "src", "tests"]

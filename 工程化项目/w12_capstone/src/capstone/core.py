@@ -45,3 +45,71 @@ def keywords(faults, k=5, stop=None):
     toks = [t for t in toks if t not in stop]
     from collections import Counter
     return Counter(toks).most_common(k)
+
+
+#: 三维度清洗口径（复用 W08）：报告与隔离区都按这三类归因
+DIMENSIONS = ("完整性", "有效性", "范围")
+TEMP_RANGE = (0.0, 200.0)
+PRESS_RANGE = (0.0, 5.0)
+
+
+def as_row(rec):
+    """任意来源的一条记录 → 统一行结构；返回 (row, 维度, 原因)。
+
+    row 为 None 表示这条记录进隔离区。三类失败各有归属，答辩时
+    "坏数据怎么处理"才答得出具体维度，而不是只说一句"做了清洗"。
+    """
+    if isinstance(rec, dict):
+        row = dict(rec)
+    else:
+        row = parse_row(rec)
+        if row is None:
+            txt = str(rec)
+            miss = (not txt.strip()) or any(
+                not x.strip() for x in txt.split(","))
+            dim = "完整性" if miss else "有效性"
+            return None, dim, ("字段缺失或空值" if miss
+                               else "字段数/类型不合法")
+    for key in ("name", "temp", "press"):
+        if row.get(key) in (None, ""):
+            return None, "完整性", "缺字段 %s" % key
+    try:
+        row["temp"] = float(row["temp"])
+        row["press"] = float(row["press"])
+    except (TypeError, ValueError):
+        return None, "有效性", "temp/press 非数值"
+    if not row["name"]:
+        return None, "完整性", "设备名为空"
+    return row, "", ""
+
+
+def check_range(row):
+    """物理量程校验（范围维度）：负值/越界返回原因。"""
+    if row["temp"] < 0 or row["press"] < 0:
+        return False, "负值"
+    if not (TEMP_RANGE[0] <= row["temp"] <= TEMP_RANGE[1]):
+        return False, "温度越界"
+    if not (PRESS_RANGE[0] <= row["press"] <= PRESS_RANGE[1]):
+        return False, "压力越界"
+    return True, ""
+
+
+def triage(records, warn, danger):
+    """三维度清洗 → (有效行, 隔离区, 各维度计数)。隔离不等于丢证据。"""
+    good, quarantine, dim_count = [], [], {d: 0 for d in DIMENSIONS}
+    for i, rec in enumerate(records, 1):
+        row, dim, reason = as_row(rec)
+        if row is None:
+            dim_count[dim] += 1
+            quarantine.append({"line": i, "raw": rec,
+                               "dimension": dim, "reason": reason})
+            continue
+        ok, why = check_range(row)
+        if not ok:
+            dim_count["范围"] += 1
+            quarantine.append({"line": i, "raw": rec,
+                               "dimension": "范围", "reason": why})
+            continue
+        row["level"] = level(row, warn, danger)
+        good.append(row)
+    return good, quarantine, dim_count

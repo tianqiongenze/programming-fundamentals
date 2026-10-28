@@ -111,6 +111,59 @@ class Settings:
     items: List[Any] = field(default_factory=list)
     raw: Dict[str, Any] = field(default_factory=dict)
 
+    def get(self, key, default=None):
+        """任意配置项读取：raw 优先，缺失回落 default（pipeline 项目专属参数）。"""
+        if key in self.raw:
+            return self.raw[key]
+        v = DEFAULTS.get(key, default)
+        return default if v is None else v
+
+    def num(self, key, default=0.0):
+        """数值型配置（字符串也尽力转换，转不动就兜底）。"""
+        try:
+            return float(self.get(key, default))
+        except (TypeError, ValueError):
+            return float(default)
+
+    def flag(self, key, default=False):
+        """布尔型配置。"""
+        v = self.get(key, default)
+        if isinstance(v, str):
+            return v.strip().lower() in ("1", "true", "yes", "y", "on")
+        return bool(v)
+
+    def seq(self, key, default=None):
+        """列表型配置（YAML 块列表 / 逗号分隔字符串均可）。"""
+        v = self.get(key, None)
+        if v is None:
+            return list(default or [])
+        if isinstance(v, str):
+            return [x.strip() for x in v.split(",") if x.strip()]
+        if isinstance(v, (list, tuple)):
+            return list(v)
+        return [v]
+
+    def tier_gates(self, defaults):
+        """工单四档门槛：rules.yaml `tiers:` 段的实测门限，数字外置。
+
+        为什么外置：门槛数字出自工单验收表，不该硬编码进 tiers.py
+        （改配置不改代码）；未配置 `tiers:` 的旧配置回落代码默认值，
+        保证课堂环境即使配置缺段也照样能判定。
+        """
+        out = dict(defaults)
+        raw = self.raw.get("tiers")
+        if not isinstance(raw, dict):
+            return out
+        for k, v in raw.items():
+            if k not in out:
+                continue
+            try:
+                cur = out[k]
+                out[k] = float(v) if isinstance(cur, float) else int(float(v))
+            except (TypeError, ValueError):
+                pass
+        return out
+
     @classmethod
     def from_dict(cls, d):
         if not isinstance(d, dict):

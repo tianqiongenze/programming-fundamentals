@@ -45,10 +45,154 @@
     },
     {
       "ts": 100.0,
-      "temp": 96.0,
-      "press": 0.6,
+      "temp": 100.0,
+      "press": 0.8,
       "level": "emergency",
       "suppressed": false
     }
-  ]
+  ],
+  "boundary_cases": 10,
+  "boundary_temps": [
+    79.9,
+    80.0,
+    94.9,
+    95.0,
+    100.0
+  ],
+  "boundary_press": [
+    0.54,
+    0.55,
+    0.64,
+    0.65,
+    0.8
+  ],
+  "nested_levels": [
+    "emergency",
+    "normal",
+    "warning"
+  ],
+  "n_devices_swept": 3,
+  "sweep_by_level": {
+    "normal": 1,
+    "warning": 1,
+    "emergency": 1
+  },
+  "sweep": [
+    {
+      "code": "PUMP-01",
+      "temp": 79.9,
+      "press": 0.4,
+      "level": "normal",
+      "text": "[正常] PUMP-01 温度 79.9℃ / 压力 0.40MPa ｜响应: 无需处理"
+    },
+    {
+      "code": "PUMP-02",
+      "temp": 88.0,
+      "press": 0.58,
+      "level": "warning",
+      "text": "[警告] PUMP-02 温度 88.0℃ / 压力 0.58MPa ｜响应: 喊人加密监测"
+    },
+    {
+      "code": "VFD-03",
+      "temp": 96.5,
+      "press": 0.82,
+      "level": "emergency",
+      "text": "[紧急] VFD-03 温度 96.5℃ / 压力 0.82MPa ｜响应: 立即停机并上报值长"
+    }
+  ],
+  "alarm_signature": "alarm(level, msg)",
+  "measured": {
+    "ast_ifs_d": 4,
+    "alarm_fns": 1,
+    "boundary_total": 5,
+    "boundary_pass": 5,
+    "nest_depth": 2,
+    "levels_hit": 3,
+    "devices_swept": 3,
+    "sweep_has_for": true,
+    "alarm_via": true,
+    "style_rate": 100.0
+  },
+  "style_engine": "pycodestyle 2.14.0（业界标准）",
+  "style_engine_kind": "pycodestyle",
+  "style_checked_files": 16,
+  "style_checked_lines": 1211,
+  "style_violations": 0,
+  "style_rate": 100.0,
+  "style_threshold": 90.0,
+  "style_meets": true,
+  "tiers": {
+    "tiers": [
+      {
+        "tier": "及格(D)",
+        "key": "D",
+        "need": "≥2 个 if 判断 + 1 个告警函数 alarm(level, msg)",
+        "rate_min": 70.0,
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "良好(C)",
+        "key": "C",
+        "need": "边界五组测试全对（79.9/80/94.9/95/100 逐组核对）",
+        "rate_min": null,
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "优秀(B)",
+        "key": "B",
+        "need": "多条件嵌套（提示/警告/停机三级）",
+        "rate_min": 85.0,
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "优(A)",
+        "key": "A",
+        "need": "达 B 且循环测试 3 台设备（为 W3 铺垫）",
+        "rate_min": 85.0,
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      }
+    ],
+    "claimed": "优(A)",
+    "measured": {
+      "ast_ifs_d": 4,
+      "alarm_fns": 1,
+      "boundary_total": 5,
+      "boundary_pass": 5,
+      "nest_depth": 2,
+      "levels_hit": 3,
+      "devices_swept": 3,
+      "sweep_has_for": true,
+      "alarm_via": true,
+      "style_rate": 100.0
+    },
+    "gates": {
+      "D": {
+        "rate_min": 70.0,
+        "min_ifs": 2,
+        "min_alarm_fns": 1
+      },
+      "C": {
+        "rate_min": null,
+        "boundary_groups": 5
+      },
+      "B": {
+        "rate_min": 85.0,
+        "min_nest_depth": 2,
+        "min_levels": 3
+      },
+      "A": {
+        "rate_min": 85.0,
+        "min_devices": 3
+      }
+    },
+    "manual": []
+  }
 }

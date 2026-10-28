@@ -1,27 +1,121 @@
 {
-  "total": 3,
-  "sent": 3,
+  "devices": 3,
+  "rounds": 5,
+  "rounds_need": 5,
+  "rows_total": 15,
+  "sent": 15,
   "pending": 0,
-  "batches": 1,
-  "sent_batches": [
-    1
-  ],
-  "transport": "MQTT(paho-mqtt 2.x)",
+  "batches": 5,
   "rows": [
     {
-      "code": "DEV-1",
-      "temp": 55.5,
-      "press": 0.436
+      "code": "MODBUS-01",
+      "temp": 56.2,
+      "press": 0.4
     },
     {
-      "code": "DEV-2",
-      "temp": 61.6,
-      "press": 0.453
+      "code": "MODBUS-02",
+      "temp": 61.0,
+      "press": 0.5
     },
     {
-      "code": "DEV-3",
-      "temp": 58.44,
-      "press": 0.435
+      "code": "MODBUS-03",
+      "temp": 58.3,
+      "press": 0.4
     }
-  ]
+  ],
+  "payload_sample": {
+    "id": "MODBUS-01",
+    "ts": 1793151722,
+    "metrics": {
+      "temp": 56.2,
+      "press": 0.4
+    }
+  },
+  "payload_count": 15,
+  "rows_ok": true,
+  "sent_all": true,
+  "json_ok": true,
+  "modbus": {
+    "real": true,
+    "attempts": 5,
+    "detail": "实跑成功（6 寄存器）",
+    "channel": "pymodbus 本地从站（真实协议栈）:51116"
+  },
+  "mqtt": {
+    "real": true,
+    "detail": "MQTT 实跑（127.0.0.1:1883，已拉起自研 mini broker（子进程 25942, 端口 1883））"
+  },
+  "reconnect": {
+    "attempts": 2
+  },
+  "loopback": {
+    "ok": true,
+    "receipts": 1,
+    "detail": "收到 1 条（载荷逐字节一致 1 条）",
+    "first": "{\"id\": \"PROBE\", \"ts\": 1793151722, \"metrics\": {\"temp\": 0.0, \"press\": 0.0}}"
+  },
+  "transport": "MQTT 实跑（127.0.0.1:1883，已拉起自研 mini broker（子进程 25942, 端口 1883））",
+  "log": {
+    "path": "/Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w11_telemetry_upload/output/run.log",
+    "lines": 12,
+    "levels": {
+      "INFO": 10,
+      "WARNING": 1,
+      "ERROR": 1
+    }
+  },
+  "style_rate": 100.0,
+  "style_violations": 0,
+  "style_engine": "pycodestyle 2.14.0（业界标准）",
+  "tiers": {
+    "tiers": [
+      {
+        "tier": "及格(D)",
+        "gate": 80.0,
+        "need": "Modbus 读取成功 + MQTT 发布成功（真实 TCP 协议栈）",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "良好(C)",
+        "gate": 85.0,
+        "need": "5 轮采集完整；JSON 结构规范（id/ts/metrics）",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "优秀(B)",
+        "gate": 90.0,
+        "need": "断线重连实测（尝试≥2 次且重连成功）；异常日志清晰",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "优(A)",
+        "gate": 90.0,
+        "need": "达 B 且订阅回环收到回执（载荷逐字节一致并打印）",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      }
+    ],
+    "claimed": "优(A)",
+    "measured": {
+      "rate": 100.0,
+      "rows_ok": true,
+      "sent_all": true,
+      "modbus_real": true,
+      "mqtt_real": true,
+      "rounds_done": 5,
+      "rounds_need": 5,
+      "json_ok": true,
+      "reconnect_attempts": 2,
+      "log_error_count": 1,
+      "loopback_ok": true,
+      "loopback_receipts": 1
+    }
+  }
 }

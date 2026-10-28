@@ -1,13 +1,49 @@
+# 工单 W04《工业设备类设计》——全部可调参数外置（改配置不改代码）
+# 对应 GB/T 8566 支持过程·配置管理：代码里零硬编码阈值。
+
 warn: 80.0
 danger: 95.0
 unit: "c"
 seed: 7
 topk: 3
 
+# ── 编码规范率门槛（工单每档都写"规范率≥N%"；B/A 档要求 ≥90%）──
+# run.py 实测后写进 output/report.txt，tests/test_acceptance.py 按此断言
+style_min: 90.0
+
+# ── 演示参数（pipeline 用，可按需覆盖）──
+demo_hot_temp: 96.0        # 给 DEV-01 加温到停机线之上，演示 DANGER 判级
+demo_bad_temp: 999.0       # 越界读数，验证 OutOfRangeError 把脏数据挡在门外
+
+# ── 工单 B 档：≥3 个实例（每台字段即 __init__ 的构造参数）──
+# warn/danger 可缺省（缺省用上面的全局值）；给出即"每台设备自己的阈值"，演示实例属性隔离
 devices:
   - code: "DEV-01"
     kind: 空压机A
     temp: 41.2
+    warn: 80.0
+    danger: 95.0
   - code: "DEV-02"
     kind: 冷却泵
     temp: 25.0
+    warn: 75.0
+    danger: 90.0
+  - code: "DEV-03"
+    kind: 变频器B
+    temp: 63.8
+
+# ── 工单 W04 四档验收门槛（数字外置；tiers.py 经 config.tier_gates 读出）──
+# 规范率门逐档取自工单验收表（C 档工单未注数值，沿用体系口径 80）；
+# 功能门数字（≥N 属性/方法/实例）同样外置，禁止为变绿改这里。
+tiers:
+  D_style_min: 75.0
+  C_style_min: 80.0
+  B_style_min: 90.0
+  A_style_min: 90.0
+  D_min_classes: 1
+  D_min_attrs: 2
+  D_min_methods: 2
+  D_min_instances: 2
+  B_min_attrs: 3
+  B_min_methods: 3
+  B_min_instances: 3

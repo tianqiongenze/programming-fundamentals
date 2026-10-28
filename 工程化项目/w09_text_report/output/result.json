@@ -1,29 +1,30 @@
 {
-  "n_faults": 6,
-  "total_tokens": 52,
+  "n_faults": 8,
+  "channel": "jieba-精确模式",
+  "total_tokens": 33,
   "top": [
     {
-      "word": "液压",
+      "word": "轴承",
       "count": 3
     },
     {
-      "word": "注塑",
+      "word": "注塑机",
       "count": 2
     },
     {
-      "word": "塑机",
+      "word": "报警",
       "count": 2
     },
     {
-      "word": "机液",
+      "word": "液压泵",
       "count": 2
     },
     {
-      "word": "压泵",
+      "word": "压力",
       "count": 2
     },
     {
-      "word": "冷却",
+      "word": "异常",
       "count": 2
     },
     {
@@ -31,16 +32,177 @@
       "count": 2
     },
     {
-      "word": "机轴",
+      "word": "温度",
       "count": 2
+    },
+    {
+      "word": "偏高",
+      "count": 2
+    },
+    {
+      "word": "液压油",
+      "count": 1
+    }
+  ],
+  "top20": [
+    {
+      "word": "注塑机",
+      "count": 75
     },
     {
       "word": "轴承",
-      "count": 2
+      "count": 75
     },
     {
-      "word": "压油",
-      "count": 1
+      "word": "液压泵",
+      "count": 61
+    },
+    {
+      "word": "风机",
+      "count": 54
+    },
+    {
+      "word": "报警",
+      "count": 45
+    },
+    {
+      "word": "偏高",
+      "count": 44
+    },
+    {
+      "word": "温度",
+      "count": 34
+    },
+    {
+      "word": "温升高",
+      "count": 33
+    },
+    {
+      "word": "液压油",
+      "count": 33
+    },
+    {
+      "word": "异常",
+      "count": 32
+    },
+    {
+      "word": "异响",
+      "count": 32
+    },
+    {
+      "word": "冷却塔",
+      "count": 32
+    },
+    {
+      "word": "输送线",
+      "count": 32
+    },
+    {
+      "word": "设备",
+      "count": 31
+    },
+    {
+      "word": "冷却系统",
+      "count": 28
+    },
+    {
+      "word": "填料",
+      "count": 28
+    },
+    {
+      "word": "压力",
+      "count": 28
+    },
+    {
+      "word": "巡检",
+      "count": 26
+    },
+    {
+      "word": "泄漏",
+      "count": 24
+    },
+    {
+      "word": "一号",
+      "count": 23
     }
-  ]
+  ],
+  "stopwords_removed": 4,
+  "stop_ok": true,
+  "font_used": "/Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/fonts/ZH_Font.ttf",
+  "artifacts": {
+    "wordcloud.png": {
+      "path": "/Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w09_text_report/output/wordcloud.png",
+      "bytes": 73047
+    },
+    "top10.png": {
+      "path": "/Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w09_text_report/output/top10.png",
+      "bytes": 23686
+    },
+    "group_clouds": {
+      "paths": [
+        "group_cloud_传动系统.png",
+        "group_cloud_电气系统.png"
+      ],
+      "bytes_per_cloud": [
+        53548,
+        56523
+      ]
+    }
+  },
+  "groups": {
+    "传动系统": 4,
+    "电气系统": 4
+  },
+  "insight": "故障规律洞察: 共 8 条故障单、有效词 33 个，Top1「轴承」出现 3 次（9.1%），巡检与备件按此优先级排布。",
+  "style_rate": 100.0,
+  "style_violations": 0,
+  "style_engine": "pycodestyle 2.14.0（业界标准）",
+  "tiers": {
+    "tiers": [
+      {
+        "tier": "及格(D)",
+        "gate": 80.0,
+        "need": "分词产出>0 + 词云 PNG 真实落盘（>1000 字节）",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "良好(C)",
+        "gate": 85.0,
+        "need": "停用词过滤生效 + Top10 词频柱状图落盘",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "优秀(B)",
+        "gate": 90.0,
+        "need": "词云中文字体实测 + Top20 关键词 + 洞察含实测数字",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "优(A)",
+        "gate": 90.0,
+        "need": "达 B 且按系统分组对比词云≥2 张（如传动 vs 电气）",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      }
+    ],
+    "claimed": "优(A)",
+    "measured": {
+      "n_tokens": 33,
+      "cloud_bytes": 73047,
+      "chart_bytes": 23686,
+      "stop_ok": true,
+      "stop_hits": 4,
+      "font_ok": true,
+      "top20_count": 20,
+      "insight_ok": true,
+      "group_clouds": 2
+    }
+  }
 }

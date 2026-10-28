@@ -4,13 +4,16 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "w11_telemetry_upload"
-version = "1.0.0"
+version = "1.1.0"
 description = "虚拟设备采数与云端上报（02-程序设计基础 W11 第21次课）"
 requires-python = ">=3.10"
 dependencies = []
 
 [project.optional-dependencies]
-dev = ["pytest>=8.0", "PyYAML>=6.0"]
+# 核心链路零第三方依赖；以下为"有则更好"的能力组（环境也是选型维度）
+dev = ["pytest>=8.0", "PyYAML>=6.0", "pycodestyle>=2.12"]
+style = ["pycodestyle>=2.12", "flake8>=7.0"]
+iot = ["pymodbus>=3.6", "paho-mqtt>=2.0"]
 
 [project.scripts]
 w11_telemetry_upload = "telemetry_upload.cli:main"
@@ -25,3 +28,19 @@ where = ["src"]
 testpaths = ["tests"]
 addopts = "-q --tb=short"
 pythonpath = ["src"]
+
+# ── 编码规范体检配置（工单每档都要求"规范率≥N%"）────────────────
+# src/telemetry_upload/stylecheck.py 读本节；等价命令：
+#   python -m pycodestyle --max-line-length=100 run.py src tests
+[tool.pycodestyle]
+max-line-length = 100
+ignore = ["E121", "E123", "E126", "E226", "E24", "E704", "W503", "W504"]
+
+# flake8 本体不读 pyproject（需 flake8-pyproject 插件）；此处保持同口径，
+# 装了插件即可直接 `python -m flake8 run.py src tests`。
+[tool.flake8]
+max-line-length = 100
+ignore = ["E121", "E123", "E126", "E226", "E24", "E704", "W503", "W504"]
+
+[tool.stylecheck]
+scope = ["run.py", "src", "tests"]

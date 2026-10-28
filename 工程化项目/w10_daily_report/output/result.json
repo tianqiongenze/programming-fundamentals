@@ -19,10 +19,116 @@
       "plan_rate": 0.9595
     }
   ],
-  "pdf": true,
+  "pdf_ok": true,
   "files": [
     "report.txt",
     "report.md",
     "report.pdf"
-  ]
+  ],
+  "image": {
+    "path": "/Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w10_daily_report/output/marked_defect.png",
+    "note": "Pillow 真实标注（红框 2 处，字体 ZH_Font.ttf）",
+    "bytes": 2723,
+    "size": [
+      400,
+      300
+    ],
+    "boxes": 2
+  },
+  "pdf": {
+    "path": "/Users/joelgong/PycharmProjects/ai-course-teaching-resources/02-程序设计基础/工程化项目/w10_daily_report/output/report.pdf",
+    "note": "reportlab 多页排版（字体 ZH，中文已注册）",
+    "bytes": 56310,
+    "pages": 3,
+    "has_image": true,
+    "has_table": true,
+    "conclusion": true,
+    "font_ok": true,
+    "layout_ok": true,
+    "font_sizes": [
+      9.5,
+      16,
+      24
+    ],
+    "margins_mm": {
+      "leftMargin": 20.0,
+      "rightMargin": 20.0,
+      "topMargin": 20.0,
+      "bottomMargin": 20.0
+    },
+    "aligns": [
+      "封面标题居中",
+      "表格居中"
+    ],
+    "font": "ZH"
+  },
+  "style_rate": 100.0,
+  "style_violations": 0,
+  "style_engine": "pycodestyle 2.14.0（业界标准）",
+  "conclusion_lines": [
+    "最低合格率 98.14%（二号产线）需当日复盘。",
+    "口径: 合格率=合格/产出；达成率=产出/计划。"
+  ],
+  "tiers": {
+    "tiers": [
+      {
+        "tier": "及格(D)",
+        "gate": 80.0,
+        "need": "标注图 400×300 落盘（>1000 字节）+ PDF 可生成",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "良好(C)",
+        "gate": 85.0,
+        "need": "PDF 三要素实测：嵌图 + 表格 + 结论文本",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "优秀(B)",
+        "gate": 90.0,
+        "need": "排版实测：中文字体 + ≥3 级字号 + 回读页边距 + 对齐生效",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      },
+      {
+        "tier": "优(A)",
+        "gate": 90.0,
+        "need": "达 B 且多页报告（实测页数≥2：封面+概览+明细）",
+        "functional": true,
+        "style_ok": true,
+        "pass": true
+      }
+    ],
+    "claimed": "优(A)",
+    "measured": {
+      "img_bytes": 2723,
+      "img_size": [
+        400,
+        300
+      ],
+      "pdf_bytes": 56310,
+      "has_image": true,
+      "has_table": true,
+      "has_conclusion": true,
+      "font_ok": true,
+      "layout_ok": true,
+      "font_levels": 3,
+      "margins_mm": {
+        "leftMargin": 20.0,
+        "rightMargin": 20.0,
+        "topMargin": 20.0,
+        "bottomMargin": 20.0
+      },
+      "aligns": [
+        "封面标题居中",
+        "表格居中"
+      ],
+      "pages": 3
+    }
+  }
 }
